@@ -4,9 +4,11 @@ Endless battles between GFW and freedom brigade
 ---
 
 **Optional BBRv3 and zanmod kernel**
+````
 ```
 apt install curl -y && bash <(curl -s https://raw.githubusercontent.com/opiran-club/VPS-Optimizer/main/optimizer.sh --ipv4)
 ```
+````
 ```
 bash <(curl -s https://raw.githubusercontent.com/opiran-club/VPS-Optimizer/main/bbrv3.sh --ipv4)
 ```
@@ -131,24 +133,43 @@ ipv4
 de nl
 
  warp h (help)
+ 
  warp n (Get the WARP IP)
+ 
  warp o (Turn off WARP temporarily)
+ 
  warp u (Turn off and uninstall WARP interface and Socks5 Linux Client)
+ 
  warp b (Upgrade kernel, turn on BBR, change Linux system)
+ 
  warp a (Change account to Free, WARP+ or Teams)
+ 
  warp p (Getting WARP+ quota by scripts)
+ 
  warp v (Sync the latest version)
+ 
  warp r (Connect/Disconnect WARP Linux Client)
+ 
  warp 4/6 (Add WARP IPv4/IPv6 interface)
+ 
  warp d (Add WARP dualstack interface IPv4 + IPv6)
+ 
  warp c (Install WARP Linux Client and set to proxy mode)
+ 
  warp l (Install WARP Linux Client and set to WARP mode)
+ 
  warp i (Change the WARP IP to support Netflix)
+ 
  warp e (Install Iptables + dnsmasq + ipset solution)
+ 
  warp w (Install WireProxy solution)
+ 
  warp y (Connect/Disconnect WireProxy socks5)
+ 
  warp k (Switch between kernel and wireguard-go-reserved)
+ 
  warp g (Switch between warp global and non-global)
+ 
  warp s 4/6/d (Set stack proiority: IPv4 / IPv6 / VPS default)
 
 ---
