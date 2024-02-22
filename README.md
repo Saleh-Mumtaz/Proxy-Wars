@@ -324,7 +324,6 @@ rtt worked: yes
 
 mtproto-proxy.service
 
----
 
 RTT
 -
