@@ -326,7 +326,8 @@ mtproto-proxy.service
 
 ---
 
-**RTT**
+RTT
+-
 
 root
 ```
