@@ -554,3 +554,6 @@ sed -i -e '/-A ufw-before-input -p icmp --icmp-type destination-unreachable -j A
        -e '/-A ufw-before-forward -p icmp --icmp-type echo-request -j ACCEPT/s/ACCEPT/DROP/' \
        /etc/ufw/before.rules
 ```
+```
+ufw disable && ufw enable
+```
