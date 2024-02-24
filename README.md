@@ -538,3 +538,6 @@ ufw default allow outgoing
 ```
 ufw enable
 ```
+```
+ufw status
+```
