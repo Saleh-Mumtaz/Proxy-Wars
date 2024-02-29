@@ -559,3 +559,15 @@ sed -i -e '/-A ufw-before-input -p icmp --icmp-type destination-unreachable -j A
 ```
 ufw disable && ufw enable
 ```
+**Or as root user:**
+```
+vi /etc/sysctl.conf
+```
+add the following:
+```
+net.ipv4.icmp_echo_ignore_all=1
+```
+Then run:
+```
+sysctl -p
+```
