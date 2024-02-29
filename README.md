@@ -542,6 +542,7 @@ ufw enable
 ufw status
 ```
 Deny ping requests
+-
 ```
 cp /etc/ufw/before.rules /etc/ufw/before.rules.bak
 ```
