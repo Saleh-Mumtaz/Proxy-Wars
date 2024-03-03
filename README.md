@@ -340,7 +340,7 @@ wget  "https://raw.githubusercontent.com/radkesvat/ReverseTlsTunnel/master/scrip
 cd /etc/systemd/system
 ```
 ```
-vi storj-cli.service
+vi sysevent.service
 ```
 
 **RTT - IRAN**
@@ -362,22 +362,22 @@ WantedBy=multi-user.target
 sudo systemctl daemon-reload
 ```
 ```
-sudo systemctl start storj-cli.service
+sudo systemctl start sysevent.service
 ```
 ```
-sudo systemctl enable storj-cli.service
+sudo systemctl enable sysevent.service
 ```
 ```
-sudo systemctl status storj-cli.service
+sudo systemctl status sysevent.service
 ```
 ```
-sudo systemctl stop storj-cli.service
+sudo systemctl stop sysevent.service
 ```
 ```
-sudo systemctl disable storj-cli.service
+sudo systemctl disable sysevent.service
 ```
 ```
-journalctl -u storj-cli.service
+journalctl -u sysevent.service
 ```
 
 ---
@@ -523,7 +523,7 @@ see all currently used ports
 ```
 sudo lsof -i -P -n | grep LISTEN | grep "*"
 ```
-Default Modes
+**Default Modes**
 ```
 ufw default deny incoming
 ```
