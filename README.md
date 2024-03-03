@@ -194,38 +194,40 @@ wget https://github.com/bootmortis/iran-hosted-domains/releases/download/2024011
 **Step 8 Routing Rules**
 ```
 {
+  "log": {
+    "access": "none",
+    "dnsLog": false,
+    "loglevel": "warning"
+  },
   "api": {
+    "tag": "api",
     "services": [
       "HandlerService",
       "LoggerService",
       "StatsService"
-    ],
-    "tag": "api"
+    ]
   },
   "inbounds": [
     {
+      "tag": "api",
       "listen": "127.0.0.1",
       "port": 62789,
       "protocol": "dokodemo-door",
       "settings": {
         "address": "127.0.0.1"
-      },
-      "tag": "api"
+      }
     }
   ],
-  "log": {
-    "error": "./error.log",
-    "loglevel": "warning"
-  },
   "outbounds": [
     {
+      "tag": "direct",
       "protocol": "freedom",
       "settings": {}
     },
     {
+      "tag": "blocked",
       "protocol": "blackhole",
-      "settings": {},
-      "tag": "blocked"
+      "settings": {}
     },
     {
       "tag": "WARP",
@@ -249,25 +251,27 @@ wget https://github.com/bootmortis/iran-hosted-domains/releases/download/2024011
     },
     "system": {
       "statsInboundDownlink": true,
-      "statsInboundUplink": true
+      "statsInboundUplink": true,
+      "statsOutboundDownlink": true,
+      "statsOutboundUplink": true
     }
   },
   "routing": {
     "domainStrategy": "IPIfNonMatch",
     "rules": [
       {
+        "type": "field",
         "inboundTag": [
           "api"
         ],
-        "outboundTag": "api",
-        "type": "field"
+        "outboundTag": "api"
       },
       {
+        "type": "field",
+        "outboundTag": "blocked",
         "ip": [
           "geoip:private"
-        ],
-        "outboundTag": "blocked",
-        "type": "field"
+        ]
       },
       {
         "type": "field",
