@@ -572,3 +572,5 @@ Then run:
 ```
 sysctl -p
 ```
+These methods will not work for servers behind anycast network. 
+ICMP packets in anycast network can pass through even with icmp packets disabled at the system level, this is normal.
