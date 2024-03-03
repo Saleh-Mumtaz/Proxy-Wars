@@ -321,9 +321,9 @@ dd-only: no
 tls-only: no
 
 rtt worked: yes 
-
-mtproto-proxy.service
-
+```
+sudo systemctl status mtproto-proxy.service
+```
 
 RTT
 -
