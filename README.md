@@ -519,21 +519,21 @@ see all currently used ports
 ```
 sudo lsof -i -P -n | grep LISTEN | grep "*"
 ```
-```
-ufw allow 1605,8443,443,80,8080,2053,2087,8686,9090,8880/tcp
-```
-```
-ufw allow 1605,8443,443,80,8080,2053,2087,8686,9090,8880/udp
-```
-```
-ufw show added
-```
 Default Modes
 ```
 ufw default deny incoming
 ```
 ```
 ufw default allow outgoing
+```
+```
+ufw allow 1605,8443,443,80,2053,8880/tcp
+```
+```
+ufw allow 1605,8443,443,80,2053,8880/udp
+```
+```
+ufw show added
 ```
 ```
 ufw enable
