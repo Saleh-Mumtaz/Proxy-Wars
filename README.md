@@ -352,7 +352,7 @@ Description=Storj-cli helps you to connect to storj's globally distributed stora
 Type=idle
 User=root
 WorkingDirectory=/root
-ExecStart=/root/storj-cli --iran --peer:* --lport:443 --add-port:80 --add-port:1605 --add-port:2053 --add-port:2087 --add-port:8080 --add-port:8443 --add-port:8686 --add-port:8880 --add-port:9090 --sni:zula.ir --password:!@#$%^&* --keep-ufw --terminate:24
+ExecStart=/root/storj-cli --iran --peer:* --lport:443 --add-port:8443 --add-port:8880 --sni:zula.ir --password:!@#$%^&* --keep-ufw --terminate:24
 Restart=always
 
 [Install]
