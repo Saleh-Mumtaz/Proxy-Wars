@@ -220,16 +220,6 @@ wget https://github.com/bootmortis/iran-hosted-domains/releases/download/2024011
   ],
   "outbounds": [
     {
-      "tag": "direct",
-      "protocol": "freedom",
-      "settings": {}
-    },
-    {
-      "tag": "blocked",
-      "protocol": "blackhole",
-      "settings": {}
-    },
-    {
       "tag": "WARP",
       "protocol": "socks",
       "settings": {
@@ -240,6 +230,16 @@ wget https://github.com/bootmortis/iran-hosted-domains/releases/download/2024011
           }
         ]
       }
+    },
+    {
+      "tag": "direct",
+      "protocol": "freedom",
+      "settings": {}
+    },
+    {
+      "tag": "blocked",
+      "protocol": "blackhole",
+      "settings": {}
     }
   ],
   "policy": {
@@ -261,20 +261,6 @@ wget https://github.com/bootmortis/iran-hosted-domains/releases/download/2024011
     "rules": [
       {
         "type": "field",
-        "inboundTag": [
-          "api"
-        ],
-        "outboundTag": "api"
-      },
-      {
-        "type": "field",
-        "outboundTag": "blocked",
-        "ip": [
-          "geoip:private"
-        ]
-      },
-      {
-        "type": "field",
         "outboundTag": "WARP",
         "domain": [
           "regexp:.*\\.ir$",
@@ -293,6 +279,20 @@ wget https://github.com/bootmortis/iran-hosted-domains/releases/download/2024011
         "ip": [
           "geoip:ir",
           "geoip:us"
+        ]
+      },
+      {
+        "type": "field",
+        "inboundTag": [
+          "api"
+        ],
+        "outboundTag": "api"
+      },
+      {
+        "type": "field",
+        "outboundTag": "blocked",
+        "ip": [
+          "geoip:private"
         ]
       }
     ]
