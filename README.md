@@ -220,6 +220,16 @@ wget https://github.com/bootmortis/iran-hosted-domains/releases/download/2024011
   ],
   "outbounds": [
     {
+      "tag": "direct",
+      "protocol": "freedom",
+      "settings": {}
+    },
+    {
+      "tag": "blocked",
+      "protocol": "blackhole",
+      "settings": {}
+    },
+    {
       "tag": "WARP",
       "protocol": "socks",
       "settings": {
@@ -230,16 +240,6 @@ wget https://github.com/bootmortis/iran-hosted-domains/releases/download/2024011
           }
         ]
       }
-    },
-    {
-      "tag": "direct",
-      "protocol": "freedom",
-      "settings": {}
-    },
-    {
-      "tag": "blocked",
-      "protocol": "blackhole",
-      "settings": {}
     }
   ],
   "policy": {
