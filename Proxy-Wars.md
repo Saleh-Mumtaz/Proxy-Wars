@@ -194,11 +194,6 @@ wget https://github.com/bootmortis/iran-hosted-domains/releases/download/2024011
 **Step 8 Routing Rules**
 ```
 {
-  "log": {
-    "access": "none",
-    "dnsLog": false,
-    "loglevel": "warning"
-  },
   "api": {
     "tag": "api",
     "services": [
