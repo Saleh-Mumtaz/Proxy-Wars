@@ -237,7 +237,7 @@ wget https://github.com/bootmortis/iran-hosted-domains/releases/download/2024011
       }
     },
     {
-            "tag":"WARP-socks5-v4",
+            "tag":"WARP-v4",
             "protocol":"freedom",
             "settings":{
                 "domainStrategy":"UseIPv4"
@@ -266,7 +266,7 @@ wget https://github.com/bootmortis/iran-hosted-domains/releases/download/2024011
     "rules": [
       {
         "type": "field",
-        "outboundTag": "WARP",
+        "outboundTag": "WARP-v4",
         "domain": [
           "regexp:.*\\.ir$",
           "ext:geoip_IR.dat:ir",
@@ -280,7 +280,7 @@ wget https://github.com/bootmortis/iran-hosted-domains/releases/download/2024011
       },
       {
         "type": "field",
-        "outboundTag": "WARP",
+        "outboundTag": "WARP-v4",
         "ip": [
           "geoip:ir",
           "geoip:us"
