@@ -231,6 +231,13 @@ wget https://github.com/bootmortis/iran-hosted-domains/releases/download/2024011
             "port": 40000
           }
         ]
+      },
+      "streamSettings": {
+        "sockopt": {
+          "tcpFastOpen": true,
+          "tcpNoDelay": true,
+          "tcpKeepAliveIdle": 100
+        }
       }
     },
     {
