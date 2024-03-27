@@ -235,7 +235,17 @@ wget https://github.com/bootmortis/iran-hosted-domains/releases/download/2024011
           }
         ]
       }
-    }
+    },
+    {
+            "tag":"WARP-socks5-v4",
+            "protocol":"freedom",
+            "settings":{
+                "domainStrategy":"UseIPv4"
+            },
+            "proxySettings":{
+                "tag":"WARP"
+            }
+     }
   ],
   "policy": {
     "levels": {
