@@ -217,7 +217,9 @@ wget https://github.com/bootmortis/iran-hosted-domains/releases/download/2024011
     {
       "tag": "direct",
       "protocol": "freedom",
-      "settings": {}
+      "settings": {
+             "domainStrategy": "UseIPv4"
+      }
     },
     {
       "tag": "WARP",
