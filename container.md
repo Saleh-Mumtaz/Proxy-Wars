@@ -65,6 +65,7 @@
         },
         "sockopt": {
           "dialerProxy": "fragment",
+          "tcpFastOpen": true,
           "tcpKeepAliveIdle": 100,
           "mark": 255,
           "tcpNoDelay": true
@@ -90,6 +91,7 @@
       },
       "streamSettings": {
         "sockopt": {
+          "tcpFastOpen": true,
           "tcpNoDelay": true,
           "tcpKeepAliveIdle": 100
         }
