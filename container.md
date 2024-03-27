@@ -35,7 +35,7 @@
             "port": 2053,
             "users": [
               {
-                "id": "330179b3-df9a-44bd-b446-8315c3244140",
+                "id": "*",
                 "flow": "",
                 "encryption": "none"
               }
