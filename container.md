@@ -23,7 +23,9 @@
     {
       "tag": "direct",
       "protocol": "freedom",
-      "settings": {}
+      "settings": {
+              "domainStrategy": "UseIPv4"
+    }
     },
     {
       "tag": "SE-CF-WS-saleh",
