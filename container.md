@@ -33,7 +33,7 @@
       "settings": {
         "vnext": [
           {
-            "address": "saleh-mumtaz.ir",
+            "address": "DPfusNGjahiKxxABvFnxxSqGCZbhOvOdNWeFagxYWcDfXrzosw.Magi.AnjomanSUt.iR",
             "port": 2053,
             "users": [
               {
