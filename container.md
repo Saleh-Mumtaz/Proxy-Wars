@@ -51,7 +51,6 @@
         "tlsSettings": {
           "serverName": "DPfusNGjahiKxxABvFnxxSqGCZbhOvOdNWeFagxYWcDfXrzosw.Magi.AnjomanSUt.iR",
           "alpn": [
-            "h2",
             "http/1.1"
           ],
           "fingerprint": "chrome",
