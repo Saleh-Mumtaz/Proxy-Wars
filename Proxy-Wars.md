@@ -558,10 +558,10 @@ ufw default deny incoming
 ufw default allow outgoing
 ```
 ```
-ufw allow 1605,8443,443,80,2053,8880/tcp
+ufw allow 1605,8443,443,80,2053,2083,2087,2096/tcp
 ```
 ```
-ufw allow 1605,8443,443,80,2053,8880/udp
+ufw allow 1605,8443,443,80,2053,2083,2087,2096/udp
 ```
 ```
 ufw show added
@@ -571,6 +571,12 @@ ufw enable
 ```
 ```
 ufw status
+```
+```
+sudo ufw --force disable
+```
+```
+sudo ufw --force reset
 ```
 Deny ping requests
 -
