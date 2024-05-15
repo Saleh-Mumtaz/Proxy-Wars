@@ -342,7 +342,19 @@ rtt worked: yes
 ```
 sudo systemctl status mtproto-proxy.service
 ```
-
+Uninstalling MtProto Proxy
+```
+sudo systemctl stop mtproto-proxy
+```
+```
+sudo systemctl disable mtproto-proxy
+```
+```
+cd mtproto_proxy
+```
+```
+sudo make uninstall
+```
 RTT
 -
 
