@@ -46,7 +46,7 @@ Description=Argo Tunnel
 Type=idle
 User=root
 WorkingDirectory=/root
-ExecStart=/root/cloudflared-linux-amd64 tunnel --url localhost:2053 run argos
+ExecStart=/root/Argo/cloudflared-linux-amd64 tunnel --url localhost:2053 run argos
 Restart=always
 
 [Install]
