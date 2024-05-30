@@ -1,4 +1,4 @@
-In root directory
+**In root directory**
 
 ```
 mkdir Argo && cd Argo
@@ -20,7 +20,7 @@ wget https://github.com/cloudflare/cloudflared/releases/download/2024.5.0/cloudf
 ./cloudflared-linux-amd64 tunnel route dns argos argos.domain.com
 ```
 
-tmux
+**tmux**
 
 ```
 ./cloudflared-linux-amd64 tunnel --url localhost:2053 run argos
