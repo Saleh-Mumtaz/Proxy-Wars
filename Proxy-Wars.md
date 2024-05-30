@@ -171,6 +171,22 @@ de nl
  
  warp s 4/6/d (Set stack proiority: IPv4 / IPv6 / VPS default)
 
+or **Warp Interface**
+```
+{
+      "tag": "warp-interface",
+      "protocol": "freedom",
+      "settings": {
+        "domainStrategy": "UseIPv4"
+      },
+      "streamSettings": {
+        "sockopt": {
+          "interface": "warp",
+          "tcpFastOpen": true
+        }
+      }
+    }
+```
 ---
 
 **Step 6 Clear History**
