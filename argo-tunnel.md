@@ -36,3 +36,19 @@ tmux list-sessions
 ```
 tmux attach -t n
 ```
+**Run as service**
+
+```
+[Unit]
+Description=Argo Tunnel
+
+[Service]
+Type=idle
+User=root
+WorkingDirectory=/root
+ExecStart=/root/cloudflared-linux-amd64 tunnel --url localhost:2053 run argos
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
