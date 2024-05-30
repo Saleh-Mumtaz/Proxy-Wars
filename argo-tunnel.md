@@ -37,7 +37,12 @@ tmux list-sessions
 tmux attach -t n
 ```
 **Run as service**
-
+```
+cd /etc/systemd/system
+```
+```
+vi argos.service
+```
 ```
 [Unit]
 Description=Argo Tunnel
@@ -51,4 +56,24 @@ Restart=always
 
 [Install]
 WantedBy=multi-user.target
+```
+
+```
+sudo systemctl daemon-reload
+```
+```
+sudo systemctl start argos.service
+```
+```
+sudo systemctl enable argos.service
+```
+```
+sudo systemctl status argos.service
+```
+```
+sudo systemctl stop argos.service
+```
+
+```
+sudo systemctl disable argos.service
 ```
