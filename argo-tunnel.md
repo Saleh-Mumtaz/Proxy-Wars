@@ -36,6 +36,8 @@ tmux list-sessions
 ```
 tmux attach -t n
 ```
+To kill session ctrl + B then : then kill-session
+
 **Run as service**
 ```
 cd /etc/systemd/system
