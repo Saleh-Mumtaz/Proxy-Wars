@@ -187,22 +187,7 @@ or **Warp Interface**
       }
     }
 ```
-**Or:**
-```
-{
-      "tag": "warp-interface",
-      "protocol": "freedom",
-      "settings": {
-        "domainStrategy": "UseIPv4"
-      },
-      "streamSettings": {
-        "sockopt": {
-          "interface": "warp",
-          "tcpFastOpen": true
-        }
-      }
-    }
-```
+
 ---
 
 **Step 6 Clear History**
