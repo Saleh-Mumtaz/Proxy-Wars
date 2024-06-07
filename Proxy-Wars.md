@@ -640,6 +640,6 @@ unzip Waterwall-linux-64.zip
 apt install unzip
 ```
 ```
-chmod +x Waterwall
+chmod +rwx Waterwall
 ```
 https://github.com/radkesvat/WaterWall/wiki
