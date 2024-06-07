@@ -628,3 +628,18 @@ sysctl -p
 ```
 These methods will not work for servers behind anycast network. 
 ICMP packets in anycast network can pass through even with icmp packets disabled at the system level, this is normal.
+
+# WaterWall
+```
+wget https://github.com/radkesvat/WaterWall/releases/download/vX.X/Waterwall-linux-64.zip
+```
+```
+unzip Waterwall-linux-64.zip
+```
+```
+apt install unzip
+```
+```
+chmod +x Waterwall
+```
+https://github.com/radkesvat/WaterWall/wiki
