@@ -634,10 +634,10 @@ ICMP packets in anycast network can pass through even with icmp packets disabled
 wget https://github.com/radkesvat/WaterWall/releases/download/vX.X/Waterwall-linux-64.zip
 ```
 ```
-unzip Waterwall-linux-64.zip
-```
-```
 apt install unzip
+```
+```
+unzip Waterwall-linux-64.zip
 ```
 ```
 chmod +rwx Waterwall
