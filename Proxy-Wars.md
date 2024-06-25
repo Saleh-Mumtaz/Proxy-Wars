@@ -553,6 +553,15 @@ WantedBy=multi-user.target
 
 **Certificate with certbot**
 ```
+sudo apt install software-properties-common
+```
+```
+sudo add-apt-repository ppa:certbot/certbot
+```
+```
+sudo apt-get install certbot -y
+```
+```
 sudo certbot certonly --standalone --preferred-challenges http --agree-tos --email saleh.mumtaz@proton.me -d 
 ```
 certbot certonly --force-renew -d 
