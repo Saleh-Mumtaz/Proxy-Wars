@@ -395,7 +395,7 @@ Description=Storj-cli helps you to connect to storj's globally distributed stora
 Type=idle
 User=root
 WorkingDirectory=/root
-ExecStart=/root/storj-cli --iran --peer:* --lport:443 --add-port:8443 --add-port:8880 --sni:zula.ir --password:!@#$%^&* --keep-ufw --log:0 --terminate:24
+ExecStart=/root/storj-cli --iran --peer:* --lport:443 --add-port:8443 --add-port:8880 --sni:zula.ir --password:!@#$%^&* --keep-ufw --log:0 --connection-age:4800 --terminate:24
 Restart=always
 
 [Install]
@@ -441,7 +441,7 @@ Description=Reverse TLS Tunnel
 Type=idle
 User=root
 WorkingDirectory=/root
-ExecStart=/root/RTT --kharej --iran-ip:* --iran-port:443 --toip:127.0.0.1 --toport:multiport --password:!@#$%^&* --sni:zula.ir  --keep-ufw --log:0 --terminate:24
+ExecStart=/root/RTT --kharej --iran-ip:* --iran-port:443 --toip:127.0.0.1 --toport:multiport --password:!@#$%^&* --sni:zula.ir  --keep-ufw --log:0 --connection-age:4800 --terminate:24
 Restart=always
 
 [Install]
