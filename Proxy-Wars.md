@@ -12,10 +12,21 @@ apt install curl -y && bash <(curl -s https://raw.githubusercontent.com/opiran-c
 bash <(curl -s https://raw.githubusercontent.com/opiran-club/VPS-Optimizer/main/bbrv3.sh --ipv4)
 ```
 ---
-**Step 0 Change DNS to google and cloudflare**
+**Step 0-1 Change DNS to cloudflare and google**
+
 ```
-sudo apt-get install resolvconf
+sudo apt install resolvconf
 ```
+```
+sudo systemctl start resolvconf.service
+```
+```
+sudo systemctl enable resolvconf.service
+```
+```
+sudo systemctl status resolvconf.service
+```
+
 ```
 vi /etc/resolvconf/resolv.conf.d/head
 ```
@@ -24,7 +35,7 @@ nameserver 1.1.1.1
 nameserver 8.8.8.8
 ```
 ```
-sudo systemctl enable --now resolvconf.service
+sudo resolvconf --enable-updates
 ```
 ```
 sudo resolvconf -u
@@ -33,8 +44,33 @@ sudo resolvconf -u
 sudo systemctl restart resolvconf.service
 ```
 ```
-cat /etc/resolv.conf
+sudo systemctl restart systemd-resolved.service
 ```
+```
+resolvectl status
+```
+**Step 0-2 Change DNS to cloudflare and google**
+
+```
+mkdir /etc/systemd/resolved.conf.d/
+```
+```
+vi /etc/systemd/resolved.conf.d/dns_servers.conf
+```
+```
+[Resolve]
+DNS=1.1.1.1 8.8.8.8
+```
+```
+systemctl restart systemd-resolved
+```
+```
+resolvectl status
+```
+```
+systemd-resolve --status
+```
+
 ---
 
 **Step 1 Optimizing**
