@@ -103,6 +103,15 @@ vi /etc/ssh/sshd_config
 ```
 systemctl reload sshd
 ```
+Since ubuntu 24.04:
+https://ubuntuhandbook.org/index.php/2024/04/install-ssh-ubuntu-2404/
+edit sshd_config but for changes to take effect:
+```
+sudo systemctl daemon-reload
+```
+```
+sudo systemctl restart ssh.socket
+```
 ---
 
 **Step 4 x-ui**
