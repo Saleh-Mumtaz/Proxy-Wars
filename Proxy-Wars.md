@@ -112,6 +112,14 @@ sudo systemctl daemon-reload
 ```
 sudo systemctl restart ssh.socket
 ```
+To revert:
+```
+systemctl disable --now ssh.socket
+rm -f /etc/systemd/system/ssh.service.d/00-socket.conf
+rm -f /etc/systemd/system/ssh.socket.d/addresses.conf
+systemctl daemon-reload
+systemctl enable --now ssh.service
+```
 twinsen: Long story short - for all those who do not like this change:
 ```
 systemctl disable --now ssh.socket
