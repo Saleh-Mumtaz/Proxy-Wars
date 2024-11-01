@@ -112,6 +112,11 @@ sudo systemctl daemon-reload
 ```
 sudo systemctl restart ssh.socket
 ```
+twinsen: Long story short - for all those who do not like this change:
+```
+systemctl disable --now ssh.socket
+systemctl enable --now ssh.service
+```
 ---
 
 **Step 4 x-ui**
