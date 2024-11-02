@@ -2,6 +2,8 @@
 
 Goal: VPS to expose only 80 and 443 ports. Have XRAY TCP/WS/HTTPUPGRADE/SPLITHTTP REALITY/TLS WEBSITE NGINX-PATH-ROUTING SSH on 443.
 How?
+
+
 SSLH will handle port 443, detects ssh and https connections(include REALITY) and forwards them to XRAY OR SSH.
 xray REALITY inbound on port 4443, nginx on port 8443.
 REALITY SNI will be our own domain which we get ssl certificates on our own VPS. Important: CDN/Cloud-sign should be off! Domain should resolve into our VPS'S IP.
