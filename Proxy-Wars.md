@@ -7,45 +7,35 @@ Endless battles between GFW and freedom brigade
 
 ```
 sudo apt install resolvconf
-```
-```
+
 sudo systemctl start resolvconf.service
-```
-```
+
 sudo systemctl enable resolvconf.service
-```
-```
+
 sudo systemctl status resolvconf.service
 ```
-
 ```
 vi /etc/resolvconf/resolv.conf.d/head
-```
-```
+
 nameserver 1.1.1.1
 nameserver 8.8.8.8
 ```
 ```
 sudo resolvconf --enable-updates
-```
-```
+
 sudo resolvconf -u
-```
-```
+
 sudo systemctl restart resolvconf.service
-```
-```
+
 sudo systemctl restart systemd-resolved.service
-```
-```
+
 resolvectl status
 ```
 **Step 0-2 Change DNS to cloudflare and google**
 
 ```
 mkdir /etc/systemd/resolved.conf.d/
-```
-```
+
 vi /etc/systemd/resolved.conf.d/dns_servers.conf
 ```
 ```
@@ -54,11 +44,9 @@ DNS=1.1.1.1 8.8.8.8
 ```
 ```
 systemctl restart systemd-resolved
-```
-```
+
 resolvectl status
-```
-```
+
 systemd-resolve --status
 ```
 
@@ -133,7 +121,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.
 ```
 ---
 
-**Step 5 Warp WireProxy**
+**Step 5 Warp Interface**
 ```
 wget -N https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh && bash menu.sh
 ```
@@ -181,7 +169,7 @@ de nl
  
  warp s 4/6/d (Set stack proiority: IPv4 / IPv6 / VPS default)
 
-or **Warp Interface**
+ **Warp Interface**
 ```
 {
       "tag": "warp-interface",
@@ -192,7 +180,9 @@ or **Warp Interface**
       "streamSettings": {
         "sockopt": {
           "interface": "warp",
-          "tcpFastOpen": true
+          "tcpFastOpen": true,
+          "tcpNoDelay": true,
+          "tcpKeepAliveIdle": 100
         }
       }
     }
@@ -213,30 +203,6 @@ history -w
 **Step 10 Telegram MTProto proxy**
 ```
 https://telegra.ph/How-Run-MTProto-Proxy-Telegram-with-iSegaro-05-18
-```
-```
-curl -L -o mtp_install.sh https://git.io/fj5ru && bash mtp_install.sh
-```
-dd-only: no
-
-tls-only: no
-
-rtt worked: yes 
-```
-sudo systemctl status mtproto-proxy.service
-```
-Uninstalling MtProto Proxy
-```
-sudo systemctl stop mtproto-proxy
-```
-```
-sudo systemctl disable mtproto-proxy
-```
-```
-cd mtproto_proxy
-```
-```
-sudo make uninstall
 ```
 
 Certificate with certbot
