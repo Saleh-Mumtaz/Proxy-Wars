@@ -150,7 +150,7 @@ nano /etc/sslh.cfg
 Put the following block in that file:
 
 
-Important! 2789 is my ssh port, change yours and replace 2789 with it.
+Important! 2789 is my ssh port, change yourssh and replace 2789 with it.
 
 
 ```
