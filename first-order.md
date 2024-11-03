@@ -26,7 +26,7 @@ Here in gfw4fun script, we have /port/anytext path for cdn configs.<br />
 In REALITY inbound, put /anytext in spider field.<br />
 https://github.com/GFW4Fun/x-ui-pro<br />
 This script will install panel, configure nginx for url-path-based routing.<br />
-3x-ui web pannel will be accessible without a /port/random-path/ but only /rndm-path/ will access the panel. CDN configs with random port paths: /port/anytext but the port in client config should be 443, use external proxy to set that.<br />
+3x-ui web pannel will be accessible without a /port/random-path/ but only /rndm-path/ is enough and will access the panel. CDN configs with random port paths: /port/anytext but the port in client config should be 443, use external proxy to set that.<br />
 
 
 
