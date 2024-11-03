@@ -1,9 +1,13 @@
 # All-on-443
 XRAY-REALITY-VISION-SELF-STEAL/TLS over TCP/WS/gRPC/... + CDN Inbounds + NGINX + WEBSITE + SSH to server + Webpannel access + UFW ALL ON port 443
-<img width="738" alt="schematic" src="https://github.com/user-attachments/assets/3caec1f7-889d-47c6-9bb9-28f59ce7fd4a">
 
 
-Goal:<br /> VPS to expose only 80 and 443 ports. Have XRAY TCP/WS/HTTPUPGRADE/SPLITHTTP REALITY/TLS WEBSITE NGINX-PATH-ROUTING SSH on 443.
+<img width="738" alt="schematic" src="https://github.com/user-attachments/assets/3caec1f7-889d-47c6-9bb9-28f59ce7fd4a"><br />
+
+
+
+**Goal:**<br /> 
+VPS to expose only 80 and 443 ports. Have XRAY TCP/WS/HTTPUPGRADE/SPLITHTTP REALITY/TLS WEBSITE NGINX-PATH-ROUTING SSH on 443.
 How?
 
 
