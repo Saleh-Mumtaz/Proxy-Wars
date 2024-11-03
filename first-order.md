@@ -150,6 +150,9 @@ nano /etc/sslh.cfg
 Put the following block in that file:
 
 
+Important! 2789 is my ssh port, change yours and replace 2789 with it.
+
+
 ```
 foreground: true;
 inetd: false;
@@ -166,7 +169,7 @@ listen:
 protocols:
 (
     # Forward SSH traffic to the local SSH server on port 1605
-    { name: "ssh"; host: "127.0.0.1"; port: "1605"; },
+    { name: "ssh"; host: "127.0.0.1"; port: "2789"; },
 
     # Forward HTTPS (TLS) traffic to Xray on localhost:443
     { name: "tls"; host: "127.0.0.1"; port: "4443"; }
