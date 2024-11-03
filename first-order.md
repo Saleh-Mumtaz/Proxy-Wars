@@ -1,7 +1,7 @@
 # XRAY-REALITY-VISION-SELF-STEAL/TLS over TCP/WS/gRPC/... + CDN Inbounds + NGINX + WEBSITE + SSH to server + Webpannel access + UFW ALL ON port 443
-#
 
-Goal: VPS to expose only 80 and 443 ports. Have XRAY TCP/WS/HTTPUPGRADE/SPLITHTTP REALITY/TLS WEBSITE NGINX-PATH-ROUTING SSH on 443.
+
+Goal:<br /> VPS to expose only 80 and 443 ports. Have XRAY TCP/WS/HTTPUPGRADE/SPLITHTTP REALITY/TLS WEBSITE NGINX-PATH-ROUTING SSH on 443.
 How?
 
 
@@ -26,7 +26,10 @@ Here in gfw4fun script, we have /port/anytext path for cdn configs.<br />
 In REALITY inbound, put /anytext in spider field.<br />
 https://github.com/GFW4Fun/x-ui-pro<br />
 This script will install panel, configure nginx for url-path-based routing.<br />
+3x-ui web pannel will be accessible without a /port/random-path/ but only /rndm-path/ will access the panel. CDN configs with random port paths: /port/anytext but the port in client config should be 443, use external proxy to set that.<br />
+
 
 
 Use shortids(It is now used by default in 3x-ui).<br />
-Don't forget to choose xtls-rprx-vision in clients section.
+Don't forget to choose xtls-rprx-vision in clients section.<br />
+
