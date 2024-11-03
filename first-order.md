@@ -10,7 +10,7 @@ SSLH will handle port 443, detects ssh and https connections(include REALITY) an
 xray REALITY inbound on port 4443, nginx on port 8443.
 
 
-REALITY SNI will be our own domain which we get ssl certificates on our own VPS. Important: CDN/Cloud-sign should be off! Domain should resolve into our VPS'S IP.
+REALITY SNI will be our own domain which we get ssl certificates on our own VPS.<br />Important: CDN/Cloud-sign should be off! Domain should resolve into our VPS'S IP.
 
 
 The first SNI in this field, should be the A record without CDN proxy. Other SNIs with different CDNs should be after that. 
