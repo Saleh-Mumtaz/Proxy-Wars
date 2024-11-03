@@ -40,7 +40,7 @@ Use shortids(It is now used by default in 3x-ui).<br />
 **<br />**Do not forget to choose xtls-rprx-vision in clients section.**<br />
 
 
-In the foloowing picture, hohenheims are on Cloudflare CDN, Last two configs are direct to vps with domain. All on the same vps.
+In the folowing picture, hohenheims are on Cloudflare CDN, Last two configs are direct to vps with domain. All on the same vps at the same time.
 
 
 ![Screenshot 2024-11-03 083003](https://github.com/user-attachments/assets/820e9639-91df-4626-b780-7cddc20d658e)
