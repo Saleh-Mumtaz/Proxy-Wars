@@ -173,11 +173,11 @@ listen:
 # Protocol definitions
 protocols:
 (
-    # Forward SSH traffic to the local SSH server on port 2789
-    { name: "ssh"; host: "127.0.0.1"; port: "2789"; },
+    # Forward HTTPS (TLS) traffic to Xray on localhost:443
+    { name: "tls"; host: "127.0.0.1"; port: "4443"; },
 
-    # Forward HTTPS (TLS) traffic to Xray on localhost:4443
-    { name: "tls"; host: "127.0.0.1"; port: "4443"; }
+    # Forward SSH traffic to the local SSH server on port 1605
+    { name: "ssh"; host: "127.0.0.1"; port: "1605"; }
 );
 ```
 
@@ -200,9 +200,9 @@ Documentation=man:sslh(8)
 User=root
 RuntimeDirectory=sslh
 EnvironmentFile=/etc/default/sslh
-ExecStart=/usr/sbin/sslh --foreground --config /etc/sslh.cfg
+ExecStart=/usr/sbin/sslh-select --foreground --config /etc/sslh.cfg
 Backlog=100
-KillMode=process
+KillMode=control-group
 #Hardening
 PrivateTmp=true
 CapabilityBoundingSet=CAP_SETGID CAP_SETUID CAP_NET_BIND_SERVICE
