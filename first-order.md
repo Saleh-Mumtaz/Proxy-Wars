@@ -73,6 +73,21 @@ sudo apt-get update
 sudo DEBIAN_FRONTEND=noninteractive apt-get install sslh
 ```
 
+After this, put the sslh-ev in root directory.<br />
+
+
+Go to root directory
+```
+wget https://raw.githubusercontent.com/Saleh-Mumtaz/Proxy-Wars/refs/heads/main/sslh-ev
+```
+
+
+Then:
+
+```
+cp /root/sslh-ev /usr/sbin/
+```
+
 
 Use the gfw4fun script to install 3x-ui and nginx with its configuration.
 ```
@@ -146,6 +161,11 @@ From gfw4fun<br />
 
 # SSLH
 
+Best version of SSLH, the ev, compiled using the instructions.<br />
+
+
+https://raw.githubusercontent.com/Saleh-Mumtaz/Proxy-Wars/refs/heads/main/sslh-ev
+
 
 Create SSLH config:
 
@@ -206,7 +226,7 @@ Documentation=man:sslh(8)
 User=root
 RuntimeDirectory=sslh
 EnvironmentFile=/etc/default/sslh
-ExecStart=/usr/sbin/sslh-select --foreground --config /etc/sslh.cfg
+ExecStart=/usr/sbin/sslh-ev --foreground --config /etc/sslh.cfg
 Backlog=100
 KillMode=control-group
 #Hardening
@@ -239,6 +259,10 @@ sudo systemctl restart sslh
 sudo systemctl status sslh
 ```
 
+Remember that, sslh-fork is for small setups, vpn for 10 people, sslh-select is for medium setup, and ev can handle as much as your vps would have the resource to do so.
+
+
+
 For ufw
 
 Important! 2789 is my ssh port, change yours and replace 2789 with it.
@@ -249,7 +273,6 @@ ufw default deny incoming
 ufw default allow outgoing
 ufw allow 80,443,2789/tcp
 ufw allow 80,443,2789/udp
-ufw enable
 ```
 Change ssh port:
 ```
@@ -280,6 +303,14 @@ twinsen said: Long story short - for all those who do not like this change:
 systemctl disable --now ssh.socket
 systemctl enable --now ssh.service
 ```
+
+
+UFW at last
+```
+ufw enable
+```
+
+
 Why did you keep ssh exposed? wasn't this for having ssh on 443?
 
 
