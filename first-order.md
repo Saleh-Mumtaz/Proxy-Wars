@@ -282,4 +282,4 @@ Yes but to make sure everything works fine, we will let this setup work for a co
 
 # About SSLH
 
-Wouldn't SSLH crash? if you configure it correctly, no, but nothing is 100 percent reliable.<br />Despite its documents which are not very clear for configuration, this program is very powerful and would not crash.<br />**A lot of companies and servers** which we don't know are using this to allow ssh to their servers on 443 port, becuase it is the only exposed port along 80.
+Wouldn't SSLH crash? if you configure it correctly, no, but nothing is 100 percent reliable.<br />Despite its documents which are not very clear for configuration, this program is very powerful and would not crash.<br />**A lot of companies and servers** which we don't know are using this or similar softwares to allow ssh to their servers on 443 port, becuase it is the only exposed port along 80.
