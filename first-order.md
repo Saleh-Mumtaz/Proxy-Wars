@@ -2,7 +2,7 @@
 XRAY-REALITY-VISION-SELF-STEAL/TLS over TCP/WS/gRPC/... + CDN Inbounds + NGINX + WEBSITE + SSH to server + Webpannel access + UFW ALL ON port 443
 
 
-<img width="738" alt="schematic" src="https://github.com/user-attachments/assets/3caec1f7-889d-47c6-9bb9-28f59ce7fd4a"><br />
+<img width="1000" alt="schematic" src="https://github.com/user-attachments/assets/3caec1f7-889d-47c6-9bb9-28f59ce7fd4a"><br />
 
 
 
