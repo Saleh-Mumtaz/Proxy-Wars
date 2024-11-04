@@ -173,10 +173,10 @@ listen:
 # Protocol definitions
 protocols:
 (
-    # Forward SSH traffic to the local SSH server on port 1605
+    # Forward SSH traffic to the local SSH server on port 2789
     { name: "ssh"; host: "127.0.0.1"; port: "2789"; },
 
-    # Forward HTTPS (TLS) traffic to Xray on localhost:443
+    # Forward HTTPS (TLS) traffic to Xray on localhost:4443
     { name: "tls"; host: "127.0.0.1"; port: "4443"; }
 );
 ```
