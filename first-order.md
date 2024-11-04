@@ -10,6 +10,8 @@ XRAY-REALITY-VISION-SELF-STEAL/TLS over TCP/WS/gRPC/... + CDN Inbounds + NGINX +
 VPS to expose only 80 and 443 ports. Have XRAY TCP/WS/HTTPUPGRADE/SPLITHTTP REALITY/TLS WEBSITE NGINX-PATH-ROUTING SSH on 443.
 How?
 
+NOTE: I personally think this is more than what we need. The whole sslh thing is to have ssh over 443 with other services running on it too. But is that necessary?<br />
+Also we may face troubles in sfpt file transfer between vps and our system.
 
 SSLH will handle port 443, detects ssh and https connections(include REALITY) and forwards them to XRAY OR SSH.
 
@@ -143,6 +145,7 @@ From gfw4fun<br />
 
 
 # SSLH
+
 
 Create SSLH config:
 
