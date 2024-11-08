@@ -126,7 +126,7 @@ Create REALITY inbound
 CDN inbounds:<br />
 
 
-From gfw4fun<br />
+From gfw4fun @gfw4fun <br />
 
 
 ![image](https://github.com/user-attachments/assets/4db3a6c3-62a1-4abe-bda6-171cf0ad2bc7)
