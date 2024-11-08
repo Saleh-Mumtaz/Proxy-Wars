@@ -1,5 +1,5 @@
 # All-on-443
-XRAY-REALITY-VISION-SELF-STEAL + VLESS-CDN-WS + WEBSITE + WEBPANNEL SIMULTANEOUSLEY  ALL ON port 443
+XRAY-REALITY-VISION-SELF-STEAL + VLESS-CDN-WS + WEBSITE + WEBPANNEL SIMULTANEOUSLY  ALL ON port 443
 
 
 <img width="738" alt="443" src="https://github.com/user-attachments/assets/294fbd7e-a445-4969-83c8-6821795fb88e">
@@ -13,41 +13,41 @@ REALITY and CDN inbounds on 443 simultaneously on public 443 port.
 xray REALITY inbound on port 4443, nginx on port 8443.
 
 
-REALITY SNI will be our own domain which we get ssl certificates on our own VPS.<br />Important: CDN/Cloud-sign should be off! Domain should resolve into our VPS'S IP.
+REALITY SNI will be our domain which we get SSL certificates on our own VPS.<br />Important: CDN/Cloud-sign should be off! Domain should resolve into our VPS'S IP.
 
 
 The first SNI in this field, should be the A record without CDN proxy. Other SNIs with different CDNs should be after that.<br />
 Before receiving certs do not activate CDN proxy on CDN SNIs.
 
 
-dest of REALITY wil be 127.0.0.1:8443 . XRAY will forward any non-REALITY traffic without any changes to 8443, nginx.<br />
-That will contain the whole URL. path of the site, panel or CDN configs, will be deciphered by nginx, and routed back to xray inbound with random port, or to it's own site or x-ui pannel.
+dest of REALITY wil be 127.0.0.1:8443. XRAY will forward any non-REALITY traffic without any changes to 8443, nginx.<br />
+That will contain the whole URL. path of the site, panel, or CDN configs, will be deciphered by nginx and routed back to xray inbound with a random port, or to its own site or x-ui panel.
 
 
-Here in **gfw4fun** script, we have /port/anytext path for cdn configs.<br />
-In REALITY inbound, put /anytext in spider field.<br />
+Here in the **gfw4fun** script, we have /port/anytext path for cdn configs.<br />
+In REALITY inbound, put /anytext in the spider field.<br />
 
 
 https://github.com/GFW4Fun/x-ui-pro<br />
-This script will install panel, configure nginx for url-path-based routing.<br />
-3x-ui web pannel will be accessible without a /port/random-path/ but only /rndm-path/ is enough and will access the panel. CDN configs with random port paths: /port/anytext but the port in client config should be 443, use external proxy to set that.<br />
+This script will install the panel, and configure nginx for url-path-based routing.<br />
+3x-ui web panel will be accessible without a /port/random-path/ but only /random-path/ is enough and will access the panel. CDN configs with random port paths: /port/anytext but the port in the client config should be 443, use an external proxy to set that.<br />
 
 
 
 Use shortids(It is now used by default in 3x-ui).<br />
 
-**Impoertant!
+**Important!
 **<br />**Do not forget to choose xtls-rprx-vision in clients section.**<br />
 
 
-In the folowing picture, hohenheims are on Cloudflare CDN, Last two configs are direct to vps with domain. All on the same vps at the same time.
+In the following picture, hohenheims are on Cloudflare CDN, Last two configs are direct to vps with domain. All on the same vps at the same time.
 
 
 ![Screenshot 2024-11-03 083003](https://github.com/user-attachments/assets/820e9639-91df-4626-b780-7cddc20d658e)
 
 
-You can use all the CDNs you want at the same time for different inbounds.<br />
-Downside is that you are limited to a single REALITY inbound.<br />
+You can use all the CDNs you want simultaneously for different inbounds.<br />
+The downside is that you are limited to a single REALITY inbound.<br />
 
 
 ![Screenshot 2024-11-03 084400](https://github.com/user-attachments/assets/4b8cde2e-7276-4778-bca4-c6ada979c2eb)
@@ -112,7 +112,7 @@ sudo fuser -k 443/tcp
 sudo fuser -k 8443/tcp
 sudo systemctl start nginx
 ```
-Then repeat previous sections commands.
+Then repeat previous sections' commands.
 
 # Now Xray 
 
