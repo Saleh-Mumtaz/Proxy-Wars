@@ -1,20 +1,14 @@
 # All-on-443
-XRAY-REALITY-VISION-SELF-STEAL/TLS over TCP/WS/gRPC/... + CDN Inbounds + NGINX + WEBSITE + SSH to server + Webpannel access + UFW ALL ON port 443
+XRAY-REALITY-VISION-SELF-STEAL + VLESS-CDN-WS + WEBSITE + WEBPANNEL SIMULTANEOUSLEY  ALL ON port 443
 
 
-<img width="1000" alt="schematic" src="https://github.com/user-attachments/assets/3caec1f7-889d-47c6-9bb9-28f59ce7fd4a"><br />
+<img width="738" alt="443" src="https://github.com/user-attachments/assets/294fbd7e-a445-4969-83c8-6821795fb88e">
+<br />
 
 
 
 **Goal:**<br /> 
-VPS to expose only 80 and 443 ports. Have XRAY TCP/WS/HTTPUPGRADE/SPLITHTTP REALITY/TLS WEBSITE NGINX-PATH-ROUTING SSH on 443.
-How?
-
-NOTE: I personally think this is more than what we need. The whole sslh thing is to have ssh over 443 with other services running on it too. But is that necessary?<br />
-Also we may face troubles in sfpt file transfer between vps and our system.
-
-SSLH will handle port 443, detects ssh and https connections(include REALITY) and forwards them to XRAY OR SSH.
-
+REALITY and CDN inbounds on 443 simultaneously on public 443 port.
 
 xray REALITY inbound on port 4443, nginx on port 8443.
 
@@ -61,43 +55,25 @@ Downside is that you are limited to a single REALITY inbound.<br />
 
 # Setup
 
-0: Disable ufw
+0: optimize server and Disable ufw
 ```
 ufw disable
 ```
 
-
-Install SSLH
-```
-sudo apt-get update
-sudo DEBIAN_FRONTEND=noninteractive apt-get install sslh
-```
-
-After this, put the sslh-ev in root directory.<br />
-
-
-Go to root directory
-```
-wget https://raw.githubusercontent.com/Saleh-Mumtaz/Proxy-Wars/refs/heads/main/sslh-ev
-```
-
-
-Then:
-
-```
-cp /root/sslh-ev /usr/sbin/
-```
 
 
 Use the gfw4fun script to install 3x-ui and nginx with its configuration.
 ```
 sudo su -c "$(command -v apt||echo dnf) -y install wget;bash <(wget -qO- raw.githubusercontent.com/GFW4Fun/x-ui-pro/master/x-ui-pro.sh) -install yes -panel 1 -cdn off"
 ```
+BE AWARE: his script set crontab to restart nginx, renew certificates, and restart xray. edit crontab if you don't want them.
+This also installs tor and warp and psiphone, diable services.<br />
+Also be carefull to turn off cdn for cdn domains when crontab renew certificates.
 
 
 Now install Html website.
 ```
-sudo su -c "bash <(wget -qO- https://raw.githubusercontent.com/GFW4Fun/x-ui-pro/master/randomfakehtml.sh)"
+bash <(wget -qO- raw.githubusercontent.com/GFW4Fun/x-ui-pro/master/x-ui-pro.sh) -RandomTemplate yes
 ```
 
 
@@ -109,7 +85,7 @@ sudo nano /etc/nginx/sites-available/yourdomain.com
 
 You will need to do this for any new domain installed by gfw4fun, yes his script can be used many times for new domains, like for different cdns.<br />
 change the 443 to 8443 on the first lines. From this:
-
+(you can use unix domain sockets, xtls wiki and linux says they are better)
 
 ![Screenshot 2024-11-03 091246](https://github.com/user-attachments/assets/292dc711-22a8-470f-8012-6aa05c1c55a9)
 
@@ -136,7 +112,7 @@ sudo fuser -k 443/tcp
 sudo fuser -k 8443/tcp
 sudo systemctl start nginx
 ```
-
+Then repeat previous sections commands.
 
 # Now Xray 
 
@@ -159,109 +135,6 @@ From gfw4fun<br />
 
 
 
-# SSLH
-
-Best version of SSLH, the ev, compiled using the instructions.<br />
-
-
-https://raw.githubusercontent.com/Saleh-Mumtaz/Proxy-Wars/refs/heads/main/sslh-ev
-
-
-Create SSLH config:
-
-
-```
-nano /etc/sslh.cfg
-```
-
-
-Put the following block in that file:
-
-
-Important! 2789 is my ssh port, change your ssh port which i mentioned how at the bottom of this page, and replace 2789 with your own number.
-
-
-```
-foreground: true;
-inetd: false;
-timeout: 2;
-pidfile: "/var/run/sslh.pid";
-
-# Listen on public port 443 for incoming connections
-listen:
-(
-    { host: "0.0.0.0"; port: "443"; }
-);
-
-# Protocol definitions
-protocols:
-(
-
-    # Forward SSH traffic to the local SSH server on port 2789
-    { name: "ssh"; host: "127.0.0.1"; port: "2789"; },
-
-    # Forward HTTPS (TLS) traffic to Xray on localhost:4443
-    { name: "tls"; host: "127.0.0.1"; port: "4443"; }
-
-);
-```
-
-Edit the service file
-
-```
-sudo nano /usr/lib/systemd/system/sslh.service
-```
-
-Delete all lines and paste this:<br />
-(for vim, press esc, then press gg, then press d shift+g)
-
-
-```
-[Unit]
-Description=SSL/SSH multiplexer
-After=network.target
-Documentation=man:sslh(8)
-
-[Service]
-User=root
-RuntimeDirectory=sslh
-EnvironmentFile=/etc/default/sslh
-ExecStart=/usr/sbin/sslh-ev --foreground --config /etc/sslh.cfg
-Backlog=100
-KillMode=control-group
-#Hardening
-PrivateTmp=true
-CapabilityBoundingSet=CAP_SETGID CAP_SETUID CAP_NET_BIND_SERVICE
-AmbientCapabilities=CAP_NET_BIND_SERVICE
-SecureBits=noroot-locked
-ProtectSystem=strict
-ProtectHome=true
-ProtectKernelModules=true
-ProtectKernelTunables=true
-ProtectControlGroups=true
-MountFlags=private
-NoNewPrivileges=true
-PrivateDevices=true
-RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
-MemoryDenyWriteExecute=true
-DynamicUser=true
-
-[Install]
-WantedBy=multi-user.target
-```
-
-Then
-
-
-```
-sudo systemctl daemon-reload
-sudo systemctl restart sslh
-sudo systemctl status sslh
-```
-
-Remember that, sslh-fork is for small setups, vpn for 10 people, sslh-select is for medium setup, and ev can handle as much as your vps would have the resource to do so.
-
-
 
 For ufw
 
@@ -274,36 +147,6 @@ ufw default allow outgoing
 ufw allow 80,443,2789/tcp
 ufw allow 80,443,2789/udp
 ```
-Change ssh port:
-```
-vi /etc/ssh/sshd_config
-```
-```
-#Port 22
-```
-```
-systemctl reload sshd
-```
-**Since ubuntu 24.04:**
-
-
-https://ubuntuhandbook.org/index.php/2024/04/install-ssh-ubuntu-2404/
-edit sshd_config but for changes to take effect:
-```
-sudo systemctl daemon-reload
-```
-```
-sudo systemctl restart ssh.socket
-```
-To revert to previous mode:
-
-
-twinsen said: Long story short - for all those who do not like this change:
-```
-systemctl disable --now ssh.socket
-systemctl enable --now ssh.service
-```
-
 
 UFW at last
 ```
@@ -311,12 +154,3 @@ ufw enable
 ```
 
 
-Why did you keep ssh exposed? wasn't this for having ssh on 443?
-
-
-Yes but to make sure everything works fine, we will let this setup work for a couple of days.<br />You can be reckless and delete your ssh port from ufw rules, but doesn't worth it, first check for a day, then do that.
-
-
-# About SSLH
-
-Wouldn't SSLH crash? if you configure it correctly, no, but nothing is 100 percent reliable.<br />Despite its documents which are not very clear for configuration, this program is very powerful and would not crash.<br />**A lot of companies and servers** which we don't know are using this or similar softwares to allow ssh to their servers on 443 port, becuase it is the only exposed port along 80.
