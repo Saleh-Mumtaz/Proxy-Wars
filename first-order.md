@@ -114,9 +114,10 @@ sudo systemctl start nginx
 ```
 Then repeat previous sections' commands.
 
-# Now Xray 
+# Xray 
 
-Create REALITY inbound
+Create REALITY inbound<br />
+This picture, was from previous setup, you should create the reality inbound on 443.
 
 
 ![image](https://github.com/user-attachments/assets/d987f9fb-d11b-4c56-a61f-230b74432b5c)
