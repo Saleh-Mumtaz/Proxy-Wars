@@ -64,7 +64,7 @@ ufw disable
 
 Use the gfw4fun script to install 3x-ui and nginx with its configuration.
 ```
-sudo su -c "$(command -v apt||echo dnf) -y install wget;bash <(wget -qO- raw.githubusercontent.com/GFW4Fun/x-ui-pro/master/x-ui-pro.sh) -install yes -panel 1 -cdn off"
+sudo su -c "$(command -v apt||echo dnf) -y install wget;bash <(wget -qO- raw.githubusercontent.com/GFW4Fun/x-ui-pro/master/x-ui-pro.sh) -panel 1 -cdn off"
 ```
 BE AWARE: his script set crontab to restart nginx, renew certificates, and restart xray. edit crontab if you don't want them.
 This also installs tor and warp and psiphone, diable services.<br />
