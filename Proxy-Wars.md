@@ -90,6 +90,7 @@ vi /etc/ssh/sshd_config
 ```
 ```
 systemctl reload sshd
+systemctl restart sshd
 ```
 Since ubuntu 24.04:
 https://ubuntuhandbook.org/index.php/2024/04/install-ssh-ubuntu-2404/
