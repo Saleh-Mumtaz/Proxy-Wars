@@ -190,3 +190,6 @@ https://github.com/chika0801/Xray-examples/tree/main/VLESS-Vision-REALITY/nginx_
 
 
 و xtls-rprx-vision مشکل تشخیص tls-in-tls رو حل میکند.
+
+
+فالبک هم که در اینباند ریلیتی dest شده به درخواست های نامعتبر یک سایت واقعی را نشون میده.
