@@ -7,47 +7,36 @@ XRAY-REALITY-VISION-SELF-STEAL + VLESS-CDN-WS + WEBSITE + WEBPANNEL SIMULTANEOUS
 
 
 
-**Goal:**<br /> 
-REALITY and CDN inbounds on 443 simultaneously on public 443 port.
+**هدف:**<br /> 
+ریلیتی و کانفیگ سی دی ان و پنل و سایت html روی پورت ۴۴۳، شاید بگید رولز کلاودفلر و پورت دستی در رکورد اروان هست چرا سی دی ان روی ۴۴۳ بیاریم، تا زمانی این جواب میداد، بعد سی دی ان های داخلی هم ترافیکشون از دیوار اتش عبور کرد، و کانفیگ های اشتباه سی دی ان ایرانی همگی بلاک شدن.
 
-xray REALITY inbound on port 4443, nginx on port 8443.
-
-
-REALITY SNI will be our domain which we get SSL certificates on our own VPS.<br />Important: CDN/Cloud-sign should be off! Domain should resolve into our VPS'S IP.
+کانفیگ ریلیتی روی پورت ۴۴۳ و انجینکس روی پورت ۸۴۴۳ خواهد بود.
 
 
-The first SNI in this field, should be the A record without CDN proxy. Other SNIs with different CDNs should be after that.<br />
-Before receiving certs do not activate CDN proxy on CDN SNIs.
-
-
-dest of REALITY wil be 127.0.0.1:8443. XRAY will forward any non-REALITY traffic without any changes to 8443, nginx.<br />
-That will contain the whole URL. path of the site, panel, or CDN configs, will be deciphered by nginx and routed back to xray inbound with a random port, or to its own site or x-ui panel.
-
-
-Here in the **gfw4fun** script, we have /port/anytext path for cdn configs.<br />
-In REALITY inbound, put /anytext in the spider field.<br />
-
-
-https://github.com/GFW4Fun/x-ui-pro<br />
-This script will install the panel, and configure nginx for url-path-based routing.<br />
-3x-ui web panel will be accessible without a /port/random-path/ but only /random-path/ is enough and will access the panel. CDN configs with random port paths: /port/anytext but the port in the client config should be 443, use an external proxy to set that.<br />
+دامنه ای که sni ریلیتی هست تیک پروکسی سی دی انش باید خاموش باشه، اسکریپت روی سرورمون براش سرتیفیکت میگیره.<br />
 
 
 
-Use shortids(It is now used by default in 3x-ui).<br />
-
-**Important!
-**<br />**Do not forget to choose xtls-rprx-vision in clients section.**<br />
+فیلد sni در اینباند ریلیتی باید همین دامنه تیک خاموش باشه.
 
 
-In the following picture, hohenheims are on Cloudflare CDN, Last two configs are direct to vps with domain. All on the same vps at the same time.
+در اینباند ریلیتی dest باید روی 127.0.0.1:8443 باشه، علت: ایکس‌ری میاد هر اتصال غیر ریلیتی رو میفرسته به destو در نتیجه وقتی کسی غیر یوزر درخواستش بهش برسه بدون هیچ تغییری در اون میفرستش دست انجینکس.<br />
+این شامل تمام درخواست های اینباندهای سی دی ان، درخواست از طرف مرورگر افراد برای باز کردن دامنه ما، و درخواست شما که شامل دامنه و مسیر پنل هست میشه. بدون هیچ تغییری میرسن دست انجینکس. این یعنی اگر مهارت کار با انجینکس داشته باشید، میتونید پروکسی تلگرام روی ۴۴۳ با فیک تی ال اس و حتی اس اس اچ روی ۴۴۳ بیارید بالا ولی من فعلا چنین کاری رو یاد ندارم و ابزار SSLH رو پیدا کردم برای اینکار.
+
+
+اسکریپت زیر از GFW4FUN برای ما پنل و انجینکس رو نصب میکنه و گواهی امنیتی دامنه رومیگیره. <br />
+
+
+
+
+در عکس زیر هوهنهایم روی سی دی ان و دوتای دیگه مستقیم هستند.<br />
 
 
 ![Screenshot 2024-11-03 083003](https://github.com/user-attachments/assets/820e9639-91df-4626-b780-7cddc20d658e)
 
 
-You can use all the CDNs you want simultaneously for different inbounds.<br />
-The downside is that you are limited to a single REALITY inbound.<br />
+از هر سی دی انی که وبسوکت پشتیبانی کنه یا اگر نداشت از splithttp پشتیبانی کنه میتونید استفاده کنید، همزمان هم میتونید استفاده کنید، هیچ نیازی به .<br />
+مشکل این روش محدود شدن شما به یک اینباند ریلیتی هست، اما با وجود داشتن شورت ایدی و uuid مشکلی نیست.<br /> اگر اتصال با اختلال کم میخواهید از سی دی ان ایرانی استفاده کنید ولی تا جای ممکن مستقیم وصل بشید.
 
 
 ![Screenshot 2024-11-03 084400](https://github.com/user-attachments/assets/4b8cde2e-7276-4778-bca4-c6ada979c2eb)
@@ -55,37 +44,39 @@ The downside is that you are limited to a single REALITY inbound.<br />
 
 # Setup
 
-0: optimize server and Disable ufw
+اول دیوار اتش سرور رو غیرفعال میکنیم.
 ```
 ufw disable
 ```
 
 
 
-Use the gfw4fun script to install 3x-ui and nginx with its configuration.
+از اسکریپت این دوست چینی برای نصب و تنطیم پنل انجینکس و دامنه استفاده میکنیم.
 ```
 sudo su -c "$(command -v apt||echo dnf) -y install wget;bash <(wget -qO- raw.githubusercontent.com/GFW4Fun/x-ui-pro/master/x-ui-pro.sh) -panel 1 -cdn off"
 ```
-BE AWARE: his script set crontab to restart nginx, renew certificates, and restart xray. edit crontab if you don't want them.
-This also installs tor and warp and psiphone, diable services.<br />
-Also be carefull to turn off cdn for cdn domains when crontab renew certificates.
+در جریان باشید اسکریپتش خیلی چیزهای اضافی مثل تور سایفون وارپ وی۲ری پنل نصب میکنه، کرون تب ریستارت انجینکس هسته ایکس ری روزانه و تمدید گواهی های امنیتی به صورت ماهانه هم تنظیم میکنه.<br />
 
 
-Now install Html website.
+اسکریپتش برای نصب دامنه های بعدی میتونه بارها و بارها اجرا بشه، اما داره هربار کد رو تغییر میده و یهو دیدید زد یک چیزی رو خراب کرد سرور کلا خوابید، من خودم هرچی اضافه داره رو حذف کردم، از یک نسخه به بعد تنظیمات انجینکسش دیگه دست نخوردن، و بنظرم دیگه نیازی هم نداریم بیشتر از اون.<br />
+
+
+**مهم:** **حتما حتما سایت فیک رو بالا بیارید**، در اموزش ویدئویی و اموزش متنی قبلی خود من تاکیدی نشد اما اینبار تاکید میکنم این دستور رو اجرا کنید و یک سایت اچ تی ام ال خودش بالا میاره.
 ```
 bash <(wget -qO- raw.githubusercontent.com/GFW4Fun/x-ui-pro/master/x-ui-pro.sh) -RandomTemplate yes
 ```
 
 
-Now we should edit the nginx domain config.
+حالا کانفیگ انجینکس برای دامنه رو تغییر میدیم:
 ```
 sudo nano /etc/nginx/sites-available/yourdomain.com
 ```
 <br />
 
-You will need to do this for any new domain installed by gfw4fun, yes his script can be used many times for new domains, like for different cdns.<br />
-change the 443 to 8443 on the first lines. From this:
-(you can use unix domain sockets, xtls wiki and linux says they are better)
+
+۴۴۳ ها رو تغییر بدید به ۸۴۴۳<br />
+شما میتونید از سوکت دامنه یونیکس unix domain socket برای اتصال انجینکس و ایکس‌ری استفاده کنید، راحت هست اما اینجا نیاوردمش.تعداد اتصالات تی سی پی لوکال بین انجینکس و ایکس‌ری رو بسیار کاهش میده، من ۳۰۰۰ تا کانکشن در پنل میدیدم با اجرای این روش اومد ۵۰ تا، علت پیشنهادم این هست که سازنده ایکس‌ری و ویکی لینوکس گفتن از پورت لوکال عملکرد بهتری داره و در استفاده های تعداد بالا خودش رو خیلی خوب نشون میده.
+
 
 ![Screenshot 2024-11-03 091246](https://github.com/user-attachments/assets/292dc711-22a8-470f-8012-6aa05c1c55a9)
 
@@ -96,7 +87,7 @@ To this:
 ![Screenshot 2024-11-03 091207](https://github.com/user-attachments/assets/e395e357-5959-4c1d-b7ce-1c21de24cbc4)
 
 
-Test new config and reload
+تست کانفیگ جدید انجینکس و راه اندازه دوباره
 ```
 ln -fs "/etc/nginx/sites-available/yourdomain.com" "/etc/nginx/sites-enabled/"
 sudo nginx -t
@@ -105,29 +96,35 @@ sudo systemctl restart nginx
 ```
 
 
-Encountered Error?
+اگر به ارور برخورد کردید:
 ```
 sudo fuser -k 80/tcp
 sudo fuser -k 443/tcp
 sudo fuser -k 8443/tcp
 sudo systemctl start nginx
 ```
-Then repeat previous sections' commands.
+و دستورات بلوک قبلیش رو دوباره اجرا کنید.
 
 # Xray 
 
-Create REALITY inbound<br />
-This picture, was from previous setup, you should create the reality inbound on 443.
+ساخت اینباند ریلیتی<br />
 
 
-![image](https://github.com/user-attachments/assets/d987f9fb-d11b-4c56-a61f-230b74432b5c)
-![Screenshot 2024-11-03 093431](https://github.com/user-attachments/assets/713697e2-153e-4a34-a511-3bb76b476de2)
+![image](https://github.com/user-attachments/assets/e7d96b83-027c-415f-b5d0-1255f8d4a0c9)
+![image](https://github.com/user-attachments/assets/b040064f-c7ec-47cb-8f0b-6397eba2f464)
+
+پورت ۴۴۳، پروتوکل ویلس، بعد میرید پایین security رو میگذارید روی ریلیتی، بعد روی clients کلیک میکنید باز بشه، بعد براش flow رو روی xtls-rprx-vision تنظیم میکنید، اما حتما بعدها که کانفیگ جدید ساختید برای اون ها هم موقع ساخت این رو تنظیم کنید در همون پنجره کوچکی که باز میشه برای ساخت گزینش خواهد بود، xtls-rprx-vision-udp443 رو انتخاب **نکنید**!<br />
+شورت ایدی ها رو **پاک نکنید!**
+اسپایدر ایکس رو خالی **نگذارید**، میتونید چندین اسپایدرایکس قرار بدین داخل این فیلد، سازنده گفته به ازای هر کلاینت متفاوت بدین ولی خب امکانش رو من ندیدم چطور تنظیم کنیم که هربار کپی کردن یک رندوم رو بردارد، باید به مهندس ثنایی بگیم همونطوری که تنظیم کرده با هرکلاینت شورت ایدی متفاوتی بده باید برای اسپایدرایکس هم بگیم اگر میتونه این رو قرار بده.
 
 
-CDN inbounds:<br />
+
+نحوه ساخت اینباند سی دی ان از صفحه دوست چینی:<br />
+**مهم** حتما utls رو روی chrome بگذارید، رندوم که از همین ها یکی انتخاب میکنه اما رندومایزد هربار یک مشخصه میسازه و در صحبت با دوستان چینی اینطوری گفتن همون بهتر chrome باشه برای همه.
 
 
 From https://github.com/GFW4Fun/x-ui-pro#server-configuration-wrench <br />
+
 
 
 ![image](https://github.com/user-attachments/assets/4db3a6c3-62a1-4abe-bda6-171cf0ad2bc7)
@@ -139,7 +136,7 @@ From https://github.com/GFW4Fun/x-ui-pro#server-configuration-wrench <br />
 
 For ufw
 
-Important! 2789 is my ssh port, change yours and replace 2789 with it.
+فعالسازی دوباره دیواراتش سرور، پورت ۲۷۸۹ مربوط به اس اس اچ من هست با مال خودتون عوض کنید، همچنین اگر امکانش بود پورت پنل رو باز نگذارید و موقع ضرورت قوانین دیواراتشتون رو بروز کنید که پورت پنل رو اجازه بده تغییرات یا درست کردنش رو انجام بدید بعد برگردونید به حالت قبلی. تمام هدف این هست پورت های کمی از سرور باز باشن، و پاسخ سرور به درخواست های نامعتبر مثلا درخواست های سیستم فیلترینگ واکنش یک سایت واقعی رو بده.<br />
 ```
 ufw status
 ufw reset
@@ -149,9 +146,11 @@ ufw allow 80,443,2789/tcp
 ufw allow 80,443,2789/udp
 ```
 
-UFW at last
+فعال سازی در اخر
 ```
 ufw enable
 ```
 
+**چرا بازگشت به ریلیتی؟**
+سازنده هسته یعنی rprx و fangliding در گفت‌وگوی گیتهاب گفتند بنظرشون این تشخیص ریلیتی نیست و مشکل از اشتباه کانفیگ کردن شما هست. در همون بحث خود rprx گفته من چندین چیز جدید ساختم و تو استین دارم برای وقتی که ریلیتی رو در چین بزنن، تا اون زمان ارائه شون نمیکنم، fangliding هم توضیح داد که در dest و sni وقتی سایتی مثل گوگل یا زولا میزنید، دیوار اتش با دادن رکوئست و پینگ کردن ‌sni متوجه میشه شما ایپیت با ایپی اون sni همخوانی نداره و دقیقا مشابه یک port forwarder تشخیصت میده. همچنان دوستان این حوزه معتقد هستن خیر فیلترینگ ما به قدرت تشخیص ریلیتی رسیده. بعد خواندن اینها من با توجه به مشخصات سیستم حاکم بر کشور مطمئن شدم چیزی که ما داشته باشیم و چین و روسیه نداشته باشند وجود ندارد، خصوصا در حوزه it. برای صحت سنجی یک کانفیگ ریلیتی در مهسا انجی پخش کردم
 
