@@ -1,114 +1,101 @@
 # All-on-443
-XRAY-REALITY-VISION-SELF-STEAL/TLS over TCP/WS/gRPC/... + CDN Inbounds + NGINX + WEBSITE + SSH to server + Webpannel access + UFW ALL ON port 443
+SSLH-EV Xray Nginx
 
 
-<img width="1000" alt="schematic" src="https://github.com/user-attachments/assets/3caec1f7-889d-47c6-9bb9-28f59ce7fd4a"><br />
-
-
-
-**Goal:**<br /> 
-VPS to expose only 80 and 443 ports. Have XRAY TCP/WS/HTTPUPGRADE/SPLITHTTP REALITY/TLS WEBSITE NGINX-PATH-ROUTING SSH on 443.
-How?
-
-NOTE: I personally think this is more than what we need. The whole sslh thing is to have ssh over 443 with other services running on it too. But is that necessary?<br />
-Also we may face troubles in sfpt file transfer between vps and our system.
-
-SSLH will handle port 443, detects ssh and https connections(include REALITY) and forwards them to XRAY OR SSH.
-
-
-xray REALITY inbound on port 4443, nginx on port 8443.
-
-
-REALITY SNI will be our own domain which we get ssl certificates on our own VPS.<br />Important: CDN/Cloud-sign should be off! Domain should resolve into our VPS'S IP.
-
-
-The first SNI in this field, should be the A record without CDN proxy. Other SNIs with different CDNs should be after that.<br />
-Before receiving certs do not activate CDN proxy on CDN SNIs.
-
-
-dest of REALITY wil be 127.0.0.1:8443 . XRAY will forward any non-REALITY traffic without any changes to 8443, nginx.<br />
-That will contain the whole URL. path of the site, panel or CDN configs, will be deciphered by nginx, and routed back to xray inbound with random port, or to it's own site or x-ui pannel.
-
-
-Here in **gfw4fun** script, we have /port/anytext path for cdn configs.<br />
-In REALITY inbound, put /anytext in spider field.<br />
-
-
-https://github.com/GFW4Fun/x-ui-pro<br />
-This script will install panel, configure nginx for url-path-based routing.<br />
-3x-ui web pannel will be accessible without a /port/random-path/ but only /rndm-path/ is enough and will access the panel. CDN configs with random port paths: /port/anytext but the port in client config should be 443, use external proxy to set that.<br />
+<img width="847" alt="sslhev" src="https://github.com/user-attachments/assets/12b3d870-c980-463e-b7e8-2c9bce330d84">
+<br />
 
 
 
-Use shortids(It is now used by default in 3x-ui).<br />
+**هدف:**<br /> 
+میخواهیم در سرور فقط پورت ۴۴۳ و ۸۰ باز باشند. میخواهیم روی پورت ۴۴۳ سایت واقعی، پنل، اینباند ریلیتی و سی دی ان و پروکسی تلگرام و پروکسی socks5 و ssh داشته باشیم یا حداقل همیشه امکان اجراشون روی ۴۴۳ رو داشته باشیم به طوری که بقیه سرویس ها به مشکل نخورند.
 
-**Impoertant!
-**<br />**Do not forget to choose xtls-rprx-vision in clients section.**<br />
+به شخصه فکر میکنم ssh روی پورت ۴۴۳ نیازی نیست.<br />
 
 
-In the folowing picture, hohenheims are on Cloudflare CDN, Last two configs are direct to vps with domain. All on the same vps at the same time.
+پورت ۴۴۳ توسط SSLH اشغال میشه و بقیه برنامه ها باید از اون ترافیک خودشون رو تحویل بگیرن، که یعنی ایپی درخواست دهنده به دست سرویس نمیرسه مگر اینکه ویکی SSLH رو بخوانید و روش Transparent proxy رو اجرا کنید.
+
+
+اینباند ریلیتی روی ۴۴۴۳ خواهد بود، انجینکس روی ۸۴۴۳، پروکسی تلگرام روی ۵۴۴۳ و ssh روی ۶۴۴۳.
+
+
+مثل دفعه قبل دامنه ریلیتی باید تیک خاموش باشه. باید براش با اسکریپت gfw4fun هم انجینکس رو تنظیم کنیم هم گواهی امنیتی بگیریم.
+
+
+
+این دفعه از سوکت دامنه استفاده خواهیم کرد، احتمال داره به خطا بر بخورید که بخاطر یا دسترسی نادرست دادن هست یا به ترتیب نادرست اجرا کردنش. نحوه کارکردنش به صورت زیر هست:<br />
+اتصال ریلیتی معتبر<br />
+[ client <--> sslh:443 <--> xray:4443 | check if it is authentic REALITY request ]<br />
+
+انجینکس ترافیکی که از نظر هسته ریلیتی معتبر نیست رو میگیره و بر اساس url مسیریابی خودش رو روی اون انجام میده، یا سایت رو میاره یا پنل رو یا اینباند سی دی ان تشخیص میده رمزنگاری رو برمیداره برش میگردونه دست هسته.<br />
+[ client <--> sslh:443 <--> xray:4443 <--> nginx:8443 <--> xray:inbound's_local_port ]<br />
+
+اتصال به پنل توسط انجینکس<br />
+[ client <--> sslh:443 <--> xray:4443 <--> nginx:8443 <--> x-ui:panel_port ]<br />
+
+و در مورد MTProxy قبل فرستادن درخواست‌ها به هسته ایکس‌ری قرار میگیره.<br />
+[ client <--> sslh:443 | check if sni == zula.ir <--> mtproxy:5443 ]<br />
+
+
+تاکیدات قبلی، اسپایدرایکس رو خالی نگذارید، شورت ایدی رو خالی نگذارید هر کدوم رو اگر میتونید چندتا تعریف کنید و با , از هم جداشون کنید و به هرکاربر ترکیب متفاوتی بدید.<br />
+در قسمت اسپایدر هر رشته ای از اعداد و حروف که میخواهید قرار بدید، من ed=2560? هم قرار دادم به مشکلی نخورد نمیدانم بدرد میخوره برای tcp یا خیر.<br />
+
+
+ادرس اسکریپت https://github.com/GFW4Fun/x-ui-pro<br />
+
+
+نصب کننده پنل تنظیم انجینکس و گرفتن گواهی برای سی دی ان. <br />
+
+
+پنل رو پورتش رو یادداشت کنید یا با دستور x-ui و وارد کردن ۱۰ مشخصات رو بگیرید، لینکی که داده رو https هست تبدیل به htttp کنید و جلوی دامنه پورت پنل رو بگذارید، قبلش دیوار اتش رو باید خاموش کرده باشید.<br />
+
+
+
+
+**حتما در هنگام ساخت پروتوکل اینباند ریلیتی رو که روی ویلس گذاشتید با پورت ۴۴۳ برید پایین امنیت بذارید روی ریلیتی بعد روی clients کلیک کنید و flow  رو روی xtls-rprx-vision تنظیم کنید.**<br />
+
+
+عکس زیر دو کانفیگ پوشانده شده ریلیتی سلف استیل هستند و بقیه روی سی دی ان.
+
 
 
 ![Screenshot 2024-11-03 083003](https://github.com/user-attachments/assets/820e9639-91df-4626-b780-7cddc20d658e)
 
 
-You can use all the CDNs you want at the same time for different inbounds.<br />
-Downside is that you are limited to a single REALITY inbound.<br />
+از هر سی دی انی که وبسوکت پشتیبانی کنه یا split رو قبول بکنه میتونید استفاده کنید.<br />
+مشکل این روش محدود شدن شما به یک اینباند ریلیتی هست.<br />
 
 
 ![Screenshot 2024-11-03 084400](https://github.com/user-attachments/assets/4b8cde2e-7276-4778-bca4-c6ada979c2eb)
 
 
-# Setup
+# راه اندازی
 
-0: Disable ufw
+0: خاموش کردن دیوار اتش
 ```
 ufw disable
 ```
 
-
-Install SSLH
+نصب پنل 
 ```
-sudo apt-get update
-sudo DEBIAN_FRONTEND=noninteractive apt-get install sslh
-```
-
-After this, put the sslh-ev in root directory.<br />
-
-
-Go to root directory
-```
-wget https://raw.githubusercontent.com/Saleh-Mumtaz/Proxy-Wars/refs/heads/main/sslh-ev
+sudo su -c "$(command -v apt||echo dnf) -y install wget;bash <(wget -qO- raw.githubusercontent.com/GFW4Fun/x-ui-pro/master/x-ui-pro.sh) -panel 1 -cdn off"
 ```
 
 
-Then:
-
+نصب سایت فیک **به هیچ عنوان رد نشود**
 ```
-cp /root/sslh-ev /usr/sbin/
-```
-
-
-Use the gfw4fun script to install 3x-ui and nginx with its configuration.
-```
-sudo su -c "$(command -v apt||echo dnf) -y install wget;bash <(wget -qO- raw.githubusercontent.com/GFW4Fun/x-ui-pro/master/x-ui-pro.sh) -install yes -panel 1 -cdn off"
+bash <(wget -qO- raw.githubusercontent.com/GFW4Fun/x-ui-pro/master/x-ui-pro.sh) -RandomTemplate yes
 ```
 
 
-Now install Html website.
-```
-sudo su -c "bash <(wget -qO- https://raw.githubusercontent.com/GFW4Fun/x-ui-pro/master/randomfakehtml.sh)"
-```
-
-
-Now we should edit the nginx domain config.
+تنظیم کانفیگ انجینکس
 ```
 sudo nano /etc/nginx/sites-available/yourdomain.com
 ```
 <br />
 
-You will need to do this for any new domain installed by gfw4fun, yes his script can be used many times for new domains, like for different cdns.<br />
-change the 443 to 8443 on the first lines. From this:
+برای هر دامنه مجزا باید اسکریپت اجرا بشه.برای دامنه های سی دی ان، ابتدا تیک خاموش باشه، بعد که اسکریپت گواهی دامنه رو گرفت و تنظیم کرد و تغییرات قبلی رو روی فایل اون دامنه اجرا کردید تیکش رو روشن کنید.<br />
+در این جا فقط و فقط پورت 443 رو به ```unix:/etc/xray.socket``` تغییر بدید. چپ چین راست چینش شاید بهم بریزد عکس رو توجه کنید. دقت کنید دو خط دارای ۴۴۳ هستن، اونی که بین دو خط ۸۰ هست رو پاک کنید و فقط اخرین خط ۴۴۳ رو تغییر بدید.
 
 
 ![Screenshot 2024-11-03 091246](https://github.com/user-attachments/assets/292dc711-22a8-470f-8012-6aa05c1c55a9)
@@ -117,10 +104,11 @@ change the 443 to 8443 on the first lines. From this:
 To this:
 
 
-![Screenshot 2024-11-03 091207](https://github.com/user-attachments/assets/e395e357-5959-4c1d-b7ce-1c21de24cbc4)
+![image](https://github.com/user-attachments/assets/d052a7a4-37ab-4bcf-abe9-29a22056941e)
 
 
-Test new config and reload
+
+تست انجینکس
 ```
 ln -fs "/etc/nginx/sites-available/yourdomain.com" "/etc/nginx/sites-enabled/"
 sudo nginx -t
@@ -129,7 +117,8 @@ sudo systemctl restart nginx
 ```
 
 
-Encountered Error?
+ارور برخورد کردید این دستورات رو اجرا کنید سپس دستورات قبلی رو اجرا کنید.
+
 ```
 sudo fuser -k 80/tcp
 sudo fuser -k 443/tcp
@@ -138,19 +127,24 @@ sudo systemctl start nginx
 ```
 
 
-# Now Xray 
+# نصب پنل
 
-Create REALITY inbound
-
-
-![image](https://github.com/user-attachments/assets/d987f9fb-d11b-4c56-a61f-230b74432b5c)
-![Screenshot 2024-11-03 093431](https://github.com/user-attachments/assets/713697e2-153e-4a34-a511-3bb76b476de2)
-
-
-CDN inbounds:<br />
+ساخت اینباند ریلیتی
+**تاکیدات قبلی، اسپایدرایکس رو خالی نگذارید، شورت ایدی رو خالی نگذارید هر کدوم رو اگر میتونید چندتا تعریف کنید(شورت ایدی رو خود پنل ثنایی میده و هر کلاینت هم فکر کنم رندوم یکی رو میذاره براش) و با , از هم جداشون کنید و به هرکاربر ترکیب متفاوتی از شورت ایدی و اسپایدرایکس بدید.<br />
+در قسمت اسپایدر هر رشته ای از اعداد و حروف که میخواهید قرار بدید، من ed=2560? هم قرار دادم به مشکلی نخورد فکر نمیکنم بدرد این جا بخوره چون کاربرد اسپایدرایکس گفتن چیز دیگری غیر از path در ترنسپورت های دیگه هست.یعنی کاراکترهای این حالتی هم میتونید داخل هر اسپایدرایکس بگذارید.<br />**
+**حتما در هنگام ساخت پروتوکل اینباند ریلیتی رو که روی ویلس گذاشتید با پورت ۴۴۳ برید پایین امنیت بذارید روی ریلیتی، بعد روی clients کلیک کنید و flow  رو روی xtls-rprx-vision تنظیم کنید. برای کلاینت های جدید پنجره ساختشون خودش فیلدش رو داره اونی که اخرش udp443 هست را انتخاب نکنید!**<br />
 
 
-From gfw4fun<br />
+![image](https://github.com/user-attachments/assets/ae17859a-b43f-4507-a309-f06107c58fb1)
+![image](https://github.com/user-attachments/assets/d56fe5b4-e872-4a85-b149-3cc0cdccab4e)
+![image](https://github.com/user-attachments/assets/5e726e58-3d70-4f8f-affe-b19ddeda0fa2)
+
+
+
+ساخت اینباند سی دی ان<br />
+
+
+از gfw4fun میباشد:<br />
 
 
 ![image](https://github.com/user-attachments/assets/4db3a6c3-62a1-4abe-bda6-171cf0ad2bc7)
@@ -161,7 +155,7 @@ From gfw4fun<br />
 
 # SSLH
 
-Best version of SSLH, the ev, compiled using the instructions.<br />
+قسمت سخت ماجرا که واقعا شاید ارزشش رو نداشته باشه.<br />
 
 
 https://raw.githubusercontent.com/Saleh-Mumtaz/Proxy-Wars/refs/heads/main/sslh-ev
