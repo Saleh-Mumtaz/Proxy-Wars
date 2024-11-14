@@ -274,39 +274,40 @@ sudo systemctl start sslh
 sudo systemctl status sslh
 ```
 وضعیت که بگیرید اگر خطا وجود داشت باید ببینید کجا اشتباه کانفیگ کردید یا در کامپایل جایی اشتباه شده. شاید هم دسترسی مورد نیاز یک دایرکتوری خاصی داده نشده. این راهنما رو من بعد از خطاهای بسیار دارم مینویسم تا حد امکان همشون برطرف شده. در پایان اگر مشکلی نبود فعالش کنید که با ریبوت بالا بیاد.
-‍‍‍‍```
+```
 sudo systemctl enable sslh
 ```
 
 با دستور زیر میتونید لاگ سرویس رو وارد یک فایل تکست کنید بریزید روی سیستم و بازش کنید ببینید درخواست ها از کدام ایپی ها بودن و جایی برنامه خطا داده یا نه، کانکشن تایم اوت ها خطا نیستند. و با دستور زیرش میتونید لاگ برای چندساعت قبل رو بگیرید. x رو برداید ساعتی که میخواهید بگذارید
-‍‍‍```
+```
 journalctl -u sslh.service > sslh-mm-dd-yy.txt
 journalctl -u sslh --since "x hour ago" > sslh-mm-dd-yy.txt
 ```
 # پروکسی تلگرام MTProxy
-
-اول نرم افزارهای مورد نیاز:
-‍‍```
+اول نرم افزارهای مورد نیاز
+```
 apt install git curl build-essential libssl-dev zlib1g-dev
 ```
+
 بعد دانلود مخزن:
 ```
 git clone https://github.com/TelegramMessenger/MTProxy
 cd MTProxy
 ```
-با اجرای configure فایل makefile رو میسازیم
-‍‍‍```
+با اجرای configure فایل Makefile رو میسازیم
+```
 ./configure
 ```
 باید makefile رو ویرایش کنیم:
-‍```
+```
 vim Makefile
 ```
 خط ۱۵ و ۱۶ ، هر دو رو کامل پاک کنید، و بلوک زیر عکس رو جایگذاری کنید:
 
 
 
-![image](https://github.com/user-attachments/assets/75c96d1b-5b08-4b28-929b-858cb57ff5dc)
+![Screenshot 2024-11-14 191004](https://github.com/user-attachments/assets/dc29d70e-9bab-4e67-be13-7536ecc55f1c)
+
 
 
 ```
@@ -314,14 +315,20 @@ CFLAGS = $(ARCH) -O3 -std=gnu11 -Wall -mpclmul -march=core2 -mfpmath=sse -mssse3
 LDFLAGS = $(ARCH) -ggdb -rdynamic -lm -lrt -lcrypto -lz -lpthread -lcrypto -fcommon
 ```
 
+
+
 بعد فایل زیر رو باید ویرایش کنیم:
-‍‍‍```
+
+
+```
 vim /root/MTProxy/common/pid.c
 ```
 برید خط ۴۲، برای من فایل ویرایش شده، از گیتهابش تصویر نمونه دست نخورده رو میگذارم:
 
 
-![image](https://github.com/user-attachments/assets/063feffd-b879-477f-81e3-6501e431382f)
+
+![Screenshot 2024-11-14 192344](https://github.com/user-attachments/assets/b44ac2c0-ccb2-410a-a518-56f36dd3badc)
+
 
 
 دو خط ۴۲ و ۴۳ رو پاک کنید، جاشون خط زیر رو قرار بدید:
