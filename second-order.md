@@ -326,8 +326,8 @@ vim /root/MTProxy/common/pid.c
 برید خط ۴۲، برای من فایل ویرایش شده، از گیتهابش تصویر نمونه دست نخورده رو میگذارم:
 
 
+![Screenshot 2024-11-14 192344](https://github.com/user-attachments/assets/43fe9135-f041-45b2-89fa-e0187259ccf2)
 
-![Screenshot 2024-11-14 192344](https://github.com/user-attachments/assets/b44ac2c0-ccb2-410a-a518-56f36dd3badc)
 
 
 
@@ -336,7 +336,10 @@ vim /root/MTProxy/common/pid.c
 PID.pid = (unsigned short)p;
 ```
 به شکل زیر باید بشه:
+
+
 ![image](https://github.com/user-attachments/assets/fd379181-2be5-4b06-87e1-9a51e5a6528a)
+
 
 
 حالا باید برنامه رو کامپایل کرده و بسازیم، دقت کنید از دایرکتوری MTProxy خارج نشده باشید
