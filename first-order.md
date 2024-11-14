@@ -28,7 +28,7 @@ XRAY-REALITY-VISION-SELF-STEAL + VLESS-CDN-WS + WEBSITE + WEBPANNEL SIMULTANEOUS
 
 
 اسکریپت زیر از GFW4FUN برای ما پنل و انجینکس رو نصب میکنه و گواهی امنیتی دامنه رومیگیره. <br />
-
+https://github.com/GFW4Fun/x-ui-pro
 
 
 
