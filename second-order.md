@@ -117,14 +117,23 @@ sudo systemctl restart nginx
 ```
 
 
-ارور برخورد کردید این دستورات رو اجرا کنید سپس دستورات قبلی رو اجرا کنید.
+ارور برخورد کردید این دستورات زیر رو اجرا کنید سپس دستورات قبلی رو اجرا کنید. شاید بعدها به ارور address already in use بخورید که راه حلش به صورت بلوک بعدی هست.
 
 ```
 sudo fuser -k 80/tcp
 sudo fuser -k 443/tcp
 sudo fuser -k 8443/tcp
+sudo rm -f /etc/xray.socket
 sudo systemctl start nginx
 ```
+```
+sudo systemctl stop nginx
+sudo lsof | grep /etc/xray.socket
+sudo kill -9 <PID>
+sudo rm -f /etc/xray.socket
+sudo systemctl start nginx
+```
+
 
 
 # نصب پنل
