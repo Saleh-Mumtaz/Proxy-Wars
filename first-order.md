@@ -48,7 +48,8 @@ https://github.com/GFW4Fun/x-ui-pro
 مشکل این روش محدود شدن شما به یک اینباند ریلیتی هست، اما با وجود داشتن شورت ایدی و uuid مشکلی نیست.<br /> اگر اتصال با اختلال کم میخواهید از سی دی ان ایرانی استفاده کنید ولی تا جای ممکن مستقیم وصل بشید.
 
 
-![Screenshot 2024-11-03 084400](https://github.com/user-attachments/assets/4b8cde2e-7276-4778-bca4-c6ada979c2eb)
+![443](https://github.com/user-attachments/assets/812788ee-0cb7-4454-b768-4f463586eec9)
+
 
 
 # Setup
