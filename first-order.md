@@ -211,4 +211,4 @@ https://github.com/chika0801/Xray-examples/tree/main/VLESS-Vision-REALITY/nginx_
 و xtls-rprx-vision مشکل تشخیص tls-in-tls رو حل میکند.(Deep Packet Inspection DPI)
 
 
-فالبک هم که در اینباند ریلیتی dest شده به درخواست های نامعتبر یک سایت واقعی را نشون میده.(ACTIVE PROBING)
+فالبک هم که در اینباند ریلیتی destination شده به درخواست های نامعتبر واکنش یک سایت واقعی را نشون میده.(ACTIVE PROBING)
