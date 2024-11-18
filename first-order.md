@@ -216,7 +216,7 @@ https://github.com/chika0801/Xray-examples/tree/main/VLESS-Vision-REALITY/nginx_
 فالبک هم که در اینباند ریلیتی destination شده به درخواست های نامعتبر واکنش یک سایت واقعی را نشون میده.(ACTIVE PROBING)
 
 # ترجمه چند کامنت
-RPRX (https://github.com/net4people/bbs/issues/327#issuecomment-1935672503)[Comment] توسعه دهنده اصلی هسته ایکس‌ری<br />
+RPRX [Comment](https://github.com/net4people/bbs/issues/327#issuecomment-1935672503) توسعه دهنده اصلی هسته ایکس‌ری<br />
 ![image](https://github.com/user-attachments/assets/06ffe194-2382-477c-aca3-bbf93510d028)
 ![image](https://github.com/user-attachments/assets/8a94be93-2a36-4521-80aa-c3f9cc354728)
 ![image](https://github.com/user-attachments/assets/a5341a95-71cc-42d1-a6d3-b32e2485e9a0)
