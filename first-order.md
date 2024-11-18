@@ -219,6 +219,11 @@ https://github.com/chika0801/Xray-examples/tree/main/VLESS-Vision-REALITY/nginx_
 RPRX توسعه دهنده اصلی هسته ایکس‌ری<br />
 ![image](https://github.com/user-attachments/assets/06ffe194-2382-477c-aca3-bbf93510d028)
 ![image](https://github.com/user-attachments/assets/8a94be93-2a36-4521-80aa-c3f9cc354728)
+![image](https://github.com/user-attachments/assets/a5341a95-71cc-42d1-a6d3-b32e2485e9a0)
+![image](https://github.com/user-attachments/assets/51e9d8d4-e0e9-4d3b-8628-90313168db71)
+![image](https://github.com/user-attachments/assets/71654801-2b0c-40d1-826c-0e4d28222d64)
+
+
 
 
 
