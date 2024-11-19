@@ -46,7 +46,8 @@ https://github.com/GFW4Fun/x-ui-pro
 > [!CAUTION]
 > تبعات استفادش به عهده خودتون هست.
 
-![nake](https://github.com/user-attachments/assets/6c23ad84-6c59-45ff-a55c-30d5ce9d274c)
+![nake](https://github.com/user-attachments/assets/437972c6-e22f-4365-a122-f54127f4cf65
+)
 
 
 
