@@ -164,7 +164,7 @@ server {
 	listen 80;
 	listen 8443 ssl;
  	listen [::]:80;
-  listen [::]:8443 ssl;
+        listen [::]:8443 ssl;
 	index index.html index.htm index.php index.nginx-debian.html;
 	root /var/www/html/;
 	ssl_protocols TLSv1.3;
