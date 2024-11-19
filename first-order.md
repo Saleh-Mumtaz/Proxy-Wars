@@ -144,7 +144,51 @@ sudo systemctl start nginx
 اسپایدر ایکس رو خالی **نگذارید**، میتونید چندین اسپایدرایکس قرار بدین داخل این فیلد، سازنده گفته به ازای هر کلاینت متفاوت بدین ولی خب امکانش رو من ندیدم چطور تنظیم کنیم که هربار کپی کردن یک رندوم رو بردارد، باید به مهندس ثنایی بگیم همونطوری که تنظیم کرده با هرکلاینت شورت ایدی متفاوتی بده باید برای اسپایدرایکس هم بگیم اگر میتونه این رو قرار بده.از اون سمت هم میگن در بهتر کردن اتصال تاثیری نداره، پس اصلا چرا هست رو خود rprx میدونه.
 
 - ریلیتی بدون دامنه(اون هدفی که اصلا براش طراحی شده بود)<br />
-
+انجینکس رو خودتون نصب و راه اندازی کنید، از اسکریپت اشاره شده هیچ کدوم اجرا نکنید مگر اون دستور بالا اوردن سایت فیک، که اون رو بعد از نصب و راه اندازی دستی انجینکس باید انجام بدین.
+داخل یک دایرکتوری مثل /root یا /etc برید، دستورات زیر رو به ترتیب بزنید، openssl باید نصب باشه.
+```
+openssl ecparam -name prime256v1 -genkey -noout -out google.key
+openssl req -x509 -nodes -days 365 -key google.key -out google.crt -subj "/CN=google.com"
+openssl x509 -text -noout -in google.crt
+```
+دستور اخر وضعیت گواهی های cn رو بررسی میکنه، این گواهی ها فقط توسط سرور شما پذیرفته شده هستن، ارتباطی با خود گوگل ندارند.<br />
+حالا باید انجینکس رو کانفیگ کنید.
+```
+vim /etc/nginx/sites-available/google.com
+```
+بلوک زیر رو داخلش کپی کنید و ذخیره کنید بیاید بیرون، مسیر گواهی های امنیتی من در /root ، بودن برای خودتون تغییرش بدید.
+```
+server {
+	server_tokens off;
+	server_name google.com *.google.com;
+	listen 80;
+	listen 8443 ssl;
+ 	listen [::]:80;
+  listen [::]:8443 ssl;
+	index index.html index.htm index.php index.nginx-debian.html;
+	root /var/www/html/;
+	ssl_protocols TLSv1.3;
+	ssl_ciphers HIGH:!aNULL:!eNULL:!MD5:!DES:!RC4:!ADH:!SSLv3:!EXP:!PSK:!DSS;
+	ssl_certificate /root/google.crt;
+	ssl_certificate_key /root/google.key;
+	if ($host !~* ^(.+\.)?google.com$ ){return 444;}
+	if ($scheme ~* https) {set $safe 1;}
+	if ($ssl_server_name !~* ^(.+\.)?google.com$ ) {set $safe "${safe}0"; }
+	if ($safe = 10){return 444;}
+	if ($request_uri ~ "(\"|'|`|~|,|:|--|;|%|\$|&&|\?\?|0x00|0X00|\||\|\{|\}|\[|\]|<|>|\.\.\.|\.\.\/|\/\/\/)"){set $hack 1;}
+	error_page 400 402 403 500 501 502 503 504 =404 /404;
+	proxy_intercept_errors on;
+}
+```
+این دستورات بزنید تا فایل جدید رو بشناسه
+```
+ln -fs "/etc/nginx/sites-available/google.com" "/etc/nginx/sites-enabled/"
+sudo nginx -t
+sudo systemctl reload nginx
+sudo systemctl restart nginx
+```
+در sni باید google.com بگذارید، و در dest هم، 127.0.0.1:8443 رو قرار بدید. flow و شورت ایدی و اسپاید و غیره همه مثل اینباند عادی.<br />
+این روش رو برخلاف قبلی من روش ترافیک سنگین نداشتم، نمیدونم اگر شرایط ساختی که گفته شد و داشتن ایپی واقعا تمیز رو رعایت کنید چقدر دووم میاره.
 
 ## Xray CDN Inbound
 
