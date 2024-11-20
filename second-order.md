@@ -123,6 +123,7 @@ sudo systemctl restart nginx
 sudo fuser -k 80/tcp
 sudo fuser -k 443/tcp
 sudo fuser -k 8443/tcp
+sudo fuser -k /etc/xray.socket
 sudo rm -f /etc/xray.socket
 sudo systemctl start nginx
 ```
