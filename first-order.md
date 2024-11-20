@@ -190,7 +190,8 @@ sudo systemctl restart nginx
 ```
 در sni باید www.google.com بگذارید، و در dest هم، 127.0.0.1:8443 رو قرار بدید. flow و شورت ایدی و اسپاید و غیره همه مثل اینباند قبلی، self-steal.<br />
 این روش رو برخلاف قبلی من روش ترافیک سنگین نداشتم، نمیدونم اگر شرایط ساختی که گفته شد و داشتن ایپی واقعا تمیز رو رعایت کنید چقدر دووم میاره.
-
+> [!CAUTION]
+> این روش توصیه نمیشه، من پکت های Client Hello و Server Hello در این حالت با وایرشارک ضبط کردم. OCSP stapling و Certificate chain and validity توسط دیوار اتش در اینجا میتونن چک بشن.
 ## Xray CDN Inbound
 
 
