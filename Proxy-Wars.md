@@ -173,7 +173,7 @@ de nl
  **Warp Interface**
 ```
 {
-      "tag": "warp-interface",
+      "tag": "warp",
       "protocol": "freedom",
       "settings": {
         "domainStrategy": "UseIPv4"
