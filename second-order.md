@@ -192,6 +192,7 @@ nano Makefile
 ```
 make
 sudo make install
+sudo rm /usr/sbin/sslh
 sudo cp sslh-ev /usr/sbin/sslh
 ```
 حالا باید کانفیگش رو بسازیم:
