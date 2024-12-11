@@ -402,7 +402,7 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=/root/MTProxy/objs/bin
-ExecStart=/root/MTProxy/objs/bin//mtproto-proxy -u root -p 8888 -H 5443 -S secretyougenerated --aes-pwd proxy-secret proxy-multi.conf -D domain.com --http-stats
+ExecStart=/root/MTProxy/objs/bin/mtproto-proxy -u root -p 8888 -H 5443 -S secretyougenerated --aes-pwd proxy-secret proxy-multi.conf -D domain.com --http-stats
 Restart=on-failure
 KillMode=control-group
 
