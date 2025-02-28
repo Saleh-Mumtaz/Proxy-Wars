@@ -130,7 +130,7 @@ sudo fuser -k 443/tcp
 sudo fuser -k 8443/tcp
 sudo systemctl start nginx
 ```
-و دستورات بلوک قبلیش رو دوباره اجرا کنید. یا می‌تونید که خط زیر رو در ```vim /lib/systemd/system/nginx.servic``` اضافه کنید، یه خط جدید قبل ExecStartPre ایجاد کنید و اضافه اش کنید:
+و دستورات بلوک قبلیش رو دوباره اجرا کنید. یا می‌تونید که خط زیر رو در ```vim /lib/systemd/system/nginx.service``` اضافه کنید، یه خط جدید قبل ExecStartPre ایجاد کنید و اضافه اش کنید:
 ```
 ExecStartPre=/bin/rm -f /etc/xray.socket
 ```
