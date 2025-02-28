@@ -134,7 +134,11 @@ sudo systemctl start nginx
 ```
 ExecStartPre=/bin/rm -f /etc/xray.socket
 ```
-دقت کنید که بعد تغییرات شما باید دو خط با ExecStartPre شروع شوند.
+دقت کنید که بعد تغییرات شما باید دو خط با ExecStartPre شروع شوند. بعد دستورات زیر رو بزنید که تغییرات اعمال بشن:
+```
+systemctl daemon-reload
+systemctl restart nginx
+```
 
 ## Xray REALITY Inbound
 
