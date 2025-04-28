@@ -75,7 +75,7 @@ sniff:
 masquerade:
   type: proxy
   proxy:
-    url: https://news.ycombinator.com/
+    url: https://vavadas-online.com/
     rewriteHost: true
 ```
 ## subscription
