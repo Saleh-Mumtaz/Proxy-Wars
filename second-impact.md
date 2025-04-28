@@ -12,9 +12,9 @@ ufw allow 443/udp
 
 configuration
 ```
-nano /etc/hysteria/config.yaml
+vim /etc/hysteria/config.yaml
 ```
-
+دقت کنید من پورت هاپینگ رو استفاده میکنم، UDP روی پورت ۴۴۳ برای سرور من توسط ارائه دهنده بسته شده.
 ```
 listen: :443
 
@@ -78,7 +78,10 @@ masquerade:
     url: https://news.ycombinator.com/
     rewriteHost: true
 ```
-sub
+## subscription
+
+
+فرض بر این هست که با اسکریپت x-ui-pro انجینکس رو تنظیم کردید. رنج پورت از ۱۰ هزار تا ۶۰ هزار هست. هاپ اینتروال، ۱۰ ثانیه هست، یعنی هر ۱۰ ثانیه پورت رو به یک پورت رندوم دیگه توی بازه تغییر میده. اولین پورت برای شروع اتصالش هم یک پورت رندوم توی همون بازه هست.
 ```
 vim /var/www/html/subscription.json
 ```
@@ -275,3 +278,24 @@ vim /var/www/html/subscription.json
   }
 }
 ```
+
+سرتیفیکیت رو یا با certbot برای دامنه واقعیتون بگیرید و ادرس همونها رو بدید یا با openssl به صورت فیک بگیرید ولی insecure حتما true باشه.
+# iptables
+حالا باید iptables رو تنطیم کنیم تا همه اتصالات وارده به پورت های udp داخل رنج رو، که اینجا ۱۰۰۰۰ تا ۶۰۰۰۰ هزار هست، به پورت هسته هیستریا۲ که ما در کانفیگ ۴۴۳ مشخص کردیم، هدایت کنه.
+
+```
+vim /etc/ufw/before.rules
+```
+
+حالا این باکس پایین رو قبل ```filter*``` قرار بدید. 
+```
+*nat
+:PREROUTING ACCEPT [0:0]
+-A PREROUTING -i ens3 -p udp --dport 10000:60000 -j REDIRECT --to-ports 443
+COMMIT
+```
+حالا دستور زیر رو برای تنظیم ufw بزنید:
+```
+sudo ufw allow 3000:6000/udp
+```
+در نهایت برای اینکه قانون جدیدی که داخل before.rules گذاشتید اعمال بشه یکبار سیستم رو ری استارت کنید.
