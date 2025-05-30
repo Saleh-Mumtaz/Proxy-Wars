@@ -78,6 +78,16 @@ masquerade:
     url: https://vavadas-online.com/
     rewriteHost: true
 ```
+
+بعد دستورات زیر برای ریستارت هسته و بررسی وضعیتش:
+```
+systemctl restart hysteria-server.service
+systemctl status hysteria-server.service
+```
+در صورت درست بودن همه چیز:
+```
+systemctl enable --now hysteria-server.service
+```
 ## subscription
 
 
