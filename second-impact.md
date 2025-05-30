@@ -309,3 +309,9 @@ COMMIT
 sudo ufw allow 10000:60000/udp
 ```
 در نهایت برای اینکه قانون جدیدی که داخل before.rules گذاشتید اعمال بشه یکبار سیستم رو ری استارت کنید.
+
+
+یادداشت شخصی:
+```
+nohup socat TCP-LISTEN:443,reuseaddr,fork UNIX-CLIENT:/etc/xray.socket &
+```
