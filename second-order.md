@@ -128,7 +128,7 @@ sudo rm -f /etc/xray.socket
 sudo systemctl start nginx
 ```
 
-دستور استاپ زیر رو که زدید ۱۵ ۲۰ ثانیه صبر کنید. اگر حال و حوصله این صبر کردن ها رو نداشتید برید سرویس فایل انجینکس و KillMode=control-group رو به انتهای بلوک اجرا اضافه کنید. البته استاندارد نیست این کار.<br />
+دستور استاپ زیر رو که زدید ۱۵ ۲۰ ثانیه صبر کنید.~اگر حال و حوصله این صبر کردن ها رو نداشتید برید سرویس فایل انجینکس و KillMode=control-group رو به انتهای بلوک اجرا اضافه کنید. البته استاندارد نیست این کار.~<br />
 
 ```
 sudo systemctl stop nginx
@@ -138,6 +138,21 @@ sudo rm -f /etc/xray.socket
 sudo systemctl start nginx
 ```
 
+برای رفع این مشکل، در فایل سرویس انجینکس دستور حذف فایل سوکت رو قبل از اجرای خود انجینکس قرار میدیم.
+
+```
+vim /lib/systemd/system/nginx.service
+```
+بعد خط PIDFile ، یک خط خالی درست کنید و این خط زیر رو اونجا قرار بدید
+```
+ExecStartPre=/bin/rm -f /etc/xray.socket
+```
+بعد دستورات زیر رو به ترتیب بزنید
+```
+systemctl daemon-reload
+sudo systemctl reload nginx
+systemctl restart nginx
+```
 
 
 # X-UI
