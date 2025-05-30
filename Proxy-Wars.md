@@ -202,6 +202,10 @@ delete a specific line:
 ```
 history -d <line-number>
 ```
+delete multiple lines:
+```
+history -d <first-line-number>-<last-line-number>
+```
 delete long wrong terminal prompt:
 ```
 ctrl+w
