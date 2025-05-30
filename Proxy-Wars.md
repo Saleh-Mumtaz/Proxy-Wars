@@ -206,6 +206,10 @@ delete multiple lines:
 ```
 history -d <first-line-number>-<last-line-number>
 ```
+edit history file:
+```
+vi ~/.bash_history
+```
 delete long wrong terminal prompt:
 ```
 ctrl+w
