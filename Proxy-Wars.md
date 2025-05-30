@@ -198,7 +198,10 @@ history -c
 ```
 history -w
 ```
-
+delete a specific line:
+```
+history -d <line-number>
+```
 ---
 
 **Step 10 Telegram MTProto proxy**
