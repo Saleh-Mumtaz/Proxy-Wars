@@ -202,6 +202,10 @@ delete a specific line:
 ```
 history -d <line-number>
 ```
+delete long wrong terminal prompt:
+```
+ctrl+w
+```
 ---
 
 **Step 10 Telegram MTProto proxy**
