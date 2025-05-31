@@ -308,6 +308,11 @@ COMMIT
 ![image](https://github.com/user-attachments/assets/f2eafb21-1010-4248-81d2-c131c09bba8b)
 
 
+همین کار رو برای ```before6.rules``` هم انجام بدید.
+```
+vim /etc/ufw/before6.rules
+```
+
 حالا دستور زیر رو برای تنظیم ufw بزنید:
 ```
 sudo ufw allow 10000:60000/udp
