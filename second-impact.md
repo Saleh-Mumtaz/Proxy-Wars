@@ -297,13 +297,17 @@ vim /var/www/html/subscription.json
 vim /etc/ufw/before.rules
 ```
 
-حالا این باکس پایین رو قبل ```filter*``` قرار بدید. 
+حالا این باکس پایین رو قبل ```filter*``` قرار بدید. دقت کنید که شما باید با ```ip link``` ببینید اسم کارت شبکه اصلیتون چی هست، برای من ```ens3``` بوده.
 ```
 *nat
 :PREROUTING ACCEPT [0:0]
 -A PREROUTING -i ens3 -p udp --dport 10000:60000 -j REDIRECT --to-ports 443
 COMMIT
 ```
+
+![image](https://github.com/user-attachments/assets/f2eafb21-1010-4248-81d2-c131c09bba8b)
+
+
 حالا دستور زیر رو برای تنظیم ufw بزنید:
 ```
 sudo ufw allow 10000:60000/udp
