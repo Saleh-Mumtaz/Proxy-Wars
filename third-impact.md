@@ -28,7 +28,7 @@ rm -r /usr/local/etc/v2raya && systemctl stop warp-plus && systemctl disable war
 crontab -e
 0 11 * * * /sbin/shutdown -r +5
 ```
-change the password with x-ui command menu then set other things in panel itself. port path certs session duration
+change the credentials with x-ui command menu then set other things in panel itself. port path certs session duration
 in xray config disable protection shield and delete routings. correct statistics and log
 reality's dest is the socket nginx is listening on put ```/etc/xray.socket``` in corresponding field
 
