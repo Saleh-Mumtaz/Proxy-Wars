@@ -26,6 +26,7 @@ sudo su -c "$(command -v apt||echo dnf) -y install wget;bash <(wget -qO- raw.git
 sudo sh -c "$(wget -qO- https://github.com/v2rayA/v2rayA-installer/raw/main/uninstaller.sh)"
 rm -r /usr/local/etc/v2raya && systemctl stop warp-plus && systemctl disable warp-plus && rm -rf /etc/warp-plus/ && systemctl stop tor && systemctl disable tor && apt remove -y tor
 crontab -e
+30 10 * * * sudo apt update && sudo apt upgrade -y
 0 11 * * * /sbin/shutdown -r +5
 ```
 change the credentials with x-ui command menu then set other things in panel itself. port path certs session duration
