@@ -106,7 +106,7 @@ masquerade:
 ```
 restarting and enabling hy2 service
 ```
-systemctl restart hysteria-server.service && systemctl status hysteria-server.service
+sudo systemctl restart hysteria-server.service && sleep 3 && systemctl status hysteria-server.service
 systemctl enable --now hysteria-server.service
 ```
 sb subscription.json
