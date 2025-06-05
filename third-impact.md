@@ -548,6 +548,80 @@ vim /var/www/html/subscription.json
     }
   }
 ```
+client side to use on windows with hy2 program itself
+beware that if client has ipv6 but server does not, there will be problems in opening such sites.
+```
+server: *
+
+auth: *
+
+tls:
+  sni: *
+  insecure: false 
+
+transport:
+  type: udp
+
+obfs:
+  type: salamander 
+  salamander:
+    password: *
+
+quic:
+  initStreamReceiveWindow: 8388608 
+  maxStreamReceiveWindow: 8388608 
+  initConnReceiveWindow: 20971520 
+  maxConnReceiveWindow: 20971520 
+  maxIdleTimeout: 30s 
+  keepAlivePeriod: 5s 
+  disablePathMTUDiscovery: false
+
+fastOpen: true
+
+tun:
+  name: "hytun" 
+  mtu: 1500 
+  timeout: 5m 
+  address: 
+    ipv4: 100.100.100.101/30
+    ipv6: 2001::ffff:ffff:ffff:fff1/126
+  route: 
+    ipv4: [0.0.0.0/0] 
+    ipv6: ["2000::/3"] 
+    ipv4Exclude: [192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,*] 
+    ipv6Exclude: ["::/0"]
+```
+client side to use on android with hy2 program itself
+```
+server: *
+
+auth: *
+
+tls:
+  sni: *
+  insecure: false
+
+transport:
+  type: udp
+
+obfs:
+  type: salamander
+  salamander:
+    password: *
+
+quic:
+  initStreamReceiveWindow: 8388608
+  maxStreamReceiveWindow: 8388608
+  initConnReceiveWindow: 20971520
+  maxConnReceiveWindow: 20971520
+  maxIdleTimeout: 30s
+  keepAlivePeriod: 10s
+  disablePathMTUDiscovery: false
+
+socks5:
+  listen: 127.0.0.1:10808
+  disableUDP: false
+```
 docker installation
 docker container ports will bypass ufw so do not change ufw rules
 ```
