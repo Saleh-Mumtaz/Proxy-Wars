@@ -159,7 +159,7 @@ vim /var/www/html/subscription.json
       ],
       "auto_route": true,
       "endpoint_independent_nat": false,
-      "mtu": 9000,
+      "mtu": 1500,
       "platform": {
         "http_proxy": {
           "enabled": true,
