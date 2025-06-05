@@ -548,6 +548,25 @@ vim /var/www/html/subscription.json
     }
   }
 ```
+bat for windows client side to use singbox for windows
+```
+@echo off
+REM Download JSON content from the URL and save it to config.json
+curl -o config.json https://example.com/subscription.json
+
+REM Check if the download was successful
+if %errorlevel% neq 0 (
+    echo Failed to download config.json
+    pause
+    exit /b
+)
+
+REM Execute sing-box.exe to run
+start /B sing-box.exe run
+
+REM Close the window after sing-box.exe finishes
+exit
+```
 client side to use on windows with hy2 program itself
 beware that if client has ipv6 but server does not, there will be problems in opening such sites.
 ```
