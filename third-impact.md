@@ -80,6 +80,12 @@ tls:
   cert: /etc/letsencrypt/live/d/fullchain.pem
   key: /etc/letsencrypt/live/d/privkey.pem
   sniGuard: disable
+
+obfs:
+  type: salamander 
+  salamander:
+    password: cry_me_a_r1ver
+
 quic:
   initStreamReceiveWindow: 8388608
   maxStreamReceiveWindow: 8388608
@@ -89,25 +95,27 @@ quic:
   maxIncomingStreams: 1024
   disablePathMTUDiscovery: false
 
-speedTest: true
+speedTest: false
 
 disableUDP: false
 
-udpIdleTimeout: 15s
+udpIdleTimeout: 60s
+
+ignoreClientBandwidth: false
 
 auth:
   type: password
   password: randstr
-
-masquerade:
-  type: file
-  file:
-    dir: /var/www/html
 ```
+obfs will override masq so there is no point in defining obfs and masq at the same time. reslover will be system's dns, if not set.
 restarting and enabling hy2 service
 ```
 sudo systemctl restart hysteria-server.service && sleep 3 && systemctl status hysteria-server.service
 systemctl enable --now hysteria-server.service
+```
+use following command to see hy log in real time instead of systemctl status.
+```
+journalctl -u hysteria-server.service -f
 ```
 sb subscription.json
 ```
