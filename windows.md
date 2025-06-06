@@ -1,4 +1,16 @@
 Legacy right-click menu<br/><br/>
+Open cmd and enter
+```
+reg.exe add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
+```
+to revert back to new one
+```
+reg.exe delete "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" /f
+```
+after using any of them restart explorer Win+R
+```
+taskkill /f /im explorer.exe & start explorer.exe
+```
 
 ---
 "Admin CMD" option in right click menu<br/><br/>
@@ -6,7 +18,7 @@ open regedit with run and go to
 ```
 HKEY_CLASSES_ROOT\DesktopBackground\Shell\
 ```
-Right-click Shell → New → Key, name it "Admin CMD".<br/><br/>
+Right-click Shell → New → Key, name it "AdminCMD".<br/><br/>
 Inside the new key, create another key named "command".<br/><br/>
 Set the (Default) value inside "command" to:
 ```
@@ -20,9 +32,23 @@ Double-click Icon and set its value to:
 ```
 %SystemRoot%\System32\cmd.exe,0
 ```
- Restart File Explorer (Apply Changes)<br/><br/>
+or copy paste following code in notepad and save as AdminCMD.reg then right click and choose merge</br></br>
+```
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\AdminCMD]
+"Icon"="cmd.exe,0"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\AdminCMD\command]
+@="powershell -windowstyle hidden -Command \"Start-Process cmd.exe -ArgumentList '/k cd /d %V' -Verb RunAs\""
+```
+Restart File Explorer (Apply Changes)<br/><br/>
 Open Task Manager (Ctrl + Shift + Esc).<br/><br/>
 Find Windows Explorer → Restart.<br/><br/>
+or use run Win+R
+```
+taskkill /f /im explorer.exe & start explorer.exe
+```
 
 ---
 to solve blurry properties window in windows 10/11, with 14 inch displays.<br/><br/>
