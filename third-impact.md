@@ -31,7 +31,11 @@ crontab -e
 ```
 change the credentials with x-ui command menu then set other things in panel itself. port path certs session duration
 in xray config disable protection shield and delete routings. correct statistics and log
-reality's dest is the socket nginx is listening on put ```/etc/xray.socket``` in corresponding field
+reality's dest is the socket nginx is listening on put ```/etc/xray.socket``` in corresponding field</br></br>
+if you enabled ip limit, use the following command to clear the log time to time
+```
+echo "" > /usr/local/x-ui/access.log
+```
 
 changing the html site
 ```
