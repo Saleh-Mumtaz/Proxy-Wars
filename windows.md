@@ -67,3 +67,10 @@ reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /
 ```
 
 ---
+
+Get MD5 hash of files inside a folder</br></br>
+Open terminal in that folder and run:</br></br>
+```
+Get-ChildItem -Recurse -File | Get-FileHash -Algorithm MD5 | Select-Object Hash | Format-Table -HideTableHeaders | Out-File -Append X:\PATH\md5_checksums.txt
+```
+Do not set the txt output path inside the folder itself.
