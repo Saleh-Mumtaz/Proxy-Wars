@@ -235,8 +235,9 @@ sudo apt-get install certbot -y
 ```
 sudo certbot certonly --standalone --preferred-challenges http --agree-tos --email saleh.mumtaz@proton.me -d 
 ```
+```
 certbot certonly --force-renew -d 
-
+```
 https://docs.digitalocean.com/support/how-can-i-renew-lets-encrypt-certificates/
 
 ---
