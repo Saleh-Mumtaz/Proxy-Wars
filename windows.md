@@ -74,3 +74,7 @@ Open terminal in that folder and run:</br></br>
 Get-ChildItem -Path "C:\downloads" -Recurse -File | Get-FileHash -Algorithm MD5 | Select-Object Hash | Format-Table -HideTableHeaders | Out-File -Append X:\PATH\md5_checksums.txt
 ```
 Do not set the txt output path inside the folder itself.
+
+---
+
+If wifi keeps disconnecting automatically, Win + (shift+x) > (shift+m) > adapters > disable "Alow the computer to turn off this device to save power"
