@@ -78,3 +78,13 @@ Do not set the txt output path inside the folder itself.
 ---
 
 If wifi keeps disconnecting automatically, Win + (shift+x) > (shift+m) > adapters > disable "Alow the computer to turn off this device to save power"
+
+---
+
+Use --silent-debugger-extension-api to hide started debugging this browser banner.</br>
+Find shortuts and copen properties. Then in target field add --silent-debugger-extension-api after what was already there.<br/>
+```"C:\Program Files\Google\Chrome\Application\chrome.exe" --silent-debugger-extension-api```
+Usually, one shortcut on desktop, the other is pinned in taskbar, present in ```C:\ProgramData\Microsoft\Windows\Start Menu\Programs```
+
+
+---
