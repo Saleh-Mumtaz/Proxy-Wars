@@ -82,6 +82,7 @@ If wifi keeps disconnecting automatically, Win + (shift+x) > (shift+m) > adapter
 ---
 
 Use --silent-debugger-extension-api to hide started debugging this browser banner.</br>
+Exit any running-instance of Chrome (e.g., navigate to chrome://quit).<br/>
 Find shortuts and copen properties. Then in target field add --silent-debugger-extension-api after what was already there.<br/>
 ```"C:\Program Files\Google\Chrome\Application\chrome.exe" --silent-debugger-extension-api```
 Usually, one shortcut on desktop, the other is pinned in taskbar, present in ```C:\ProgramData\Microsoft\Windows\Start Menu\Programs```
