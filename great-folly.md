@@ -1,3 +1,4 @@
+<p dir='rtl' align='right'>
 <details>
 <summary>DeepSeek Persian translation</summary>
 <td class="d-block color-fg-default comment-body markdown-body js-comment-body">
@@ -506,3 +507,4 @@ stream-up دارای حالت پیش‌فرض و همچنین حالت ترکی�
 
 
 </details>
+</p>
