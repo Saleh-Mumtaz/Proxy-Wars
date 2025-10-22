@@ -89,3 +89,7 @@ Usually, one shortcut on desktop, the other is pinned in taskbar, present in ```
 
 
 ---
+Recover Flash Drive
+```
+attrib  -H -S F:\\*.* /S /D /L
+```
