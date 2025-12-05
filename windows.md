@@ -93,3 +93,10 @@ Recover Flash Drive
 ```
 attrib  -H -S F:\\*.* /S /D /L
 ```
+---
+fix cottuption
+```
+sfc /scannow
+DISM /Online /Cleanup-Image /RestoreHealth
+```
+---
