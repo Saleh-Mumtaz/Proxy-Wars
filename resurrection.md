@@ -22,7 +22,7 @@ chmod +x dnstt-client-linux-amd64
 ```
 Test
 ```
-./dnstt-client-linux-amd64 -udp 8.8.8.8:53 -pubkey-file pub.key t.iran123.online 127.0.0.1:1080
+./dnstt-client-linux-amd64 -udp 8.8.8.8:53 -pubkey-file pub.key dns.example.com 127.0.0.1:1080
 ```
 As Service
 ```
