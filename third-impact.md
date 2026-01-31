@@ -24,6 +24,7 @@ LC_TIME=C.UTF-8
 ```
 timedatectl list-timezones | grep Tehran
 sudo timedatectl set-timezone Asia/Tehran
+sudo timedatectl set-timezone UTC
 ```
 then reboot
 
