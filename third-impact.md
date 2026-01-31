@@ -7,9 +7,27 @@ apt-get install -y software-properties-common ufw wget curl git socat cron busyb
 ```
 Timezone
 ```
+sudo localectl set-locale LC_TIME=C.UTF-8
+```
+or
+```
+env | egrep '^(LANG|LC_)'
+```
+```
+vi /etc/default/locale
+```
+```
+LANG=C.UTF-8
+LC_ALL=C.UTF-8
+LC_TIME=C.UTF-8
+```
+```
 timedatectl list-timezones | grep Tehran
 sudo timedatectl set-timezone Asia/Tehran
 ```
+then reboot
+
+---
 NGINX
 ```
 sudo apt update
