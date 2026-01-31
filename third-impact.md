@@ -5,6 +5,11 @@ resolvectl status
 sh -c 'apt-get update; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get autoremove -y; apt-get autoclean -y'
 apt-get install -y software-properties-common ufw wget curl git socat cron busybox bash-completion locales nano apt-utils
 ```
+Timezone
+```
+timedatectl list-timezones | grep Tehran
+sudo timedatectl set-timezone Asia/Tehran
+```
 NGINX
 ```
 sudo apt update
