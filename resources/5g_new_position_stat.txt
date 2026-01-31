@@ -1,0 +1,51 @@
+Network Mode	5G(NSA)
+Signal Strength	
+Operator	Irancell-GPRS
+RSRP	-67/-82
+RSSI	-57/-71
+RSRQ	-12/-12
+SINR	9/8
+PCI	433+433+433+433/20
+EARFCN	100+3048+1800+2850/640668
+eNodeB/gNodeB ID	138735/-
+LTE/NR Cell ID	21DEF48/-
+CQI	9/11
+Uplink MCS	29/26
+Downlink MCS	11/1
+Bandwidth	20+20+20+20/100
+ECGI/NCGI	4323521DEF48/-
+Current Band	1+7+3+7/78
+Current Upstream QAM	QPSK/64QAM
+Current Downstream QAM	64QAM/QPSK
+Rank Type	2/4
+TAC	8006/-
+Connection Time	0:4:55
+Current statistical traffic	3.46 MB
+Monthly Traffic	39.97 GB
+
+---
+
+Network Mode	5G(NSA)
+Signal Strength	
+Operator	Irancell-GPRS
+RSRP	-60/-82
+RSSI	-53/-71
+RSRQ	-9/-11
+SINR	15/9
+PCI	433+433+433+433/20
+EARFCN	100+3048+1800+2850/640668
+eNodeB/gNodeB ID	138735/-
+LTE/NR Cell ID	21DEF48/-
+CQI	8/13
+Uplink MCS	29/25
+Downlink MCS	9/2
+Bandwidth	20+20+20+20/100
+ECGI/NCGI	4323521DEF48/-
+Current Band	1+7+3+7/78
+Current Upstream QAM	QPSK/256QAM
+Current Downstream QAM	16QAM/QPSK
+Rank Type	2/3
+TAC	8006/-
+Connection Time	0:11:35
+Current statistical traffic	3.65 MB
+Monthly Traffic	39.97 GB
