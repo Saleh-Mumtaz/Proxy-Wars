@@ -5,6 +5,20 @@ resolvectl status
 sh -c 'apt-get update; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get autoremove -y; apt-get autoclean -y'
 apt-get install -y software-properties-common ufw wget curl git socat cron busybox bash-completion locales nano apt-utils
 ```
+Disable IPv6
+```
+sudo vi /etc/default/grub
+
+# Change this line:
+GRUB_CMDLINE_LINUX_DEFAULT=""
+# To:
+GRUB_CMDLINE_LINUX_DEFAULT="ipv6.disable=1"
+
+# Save and update GRUB
+sudo update-grub
+
+sudo reboot
+```
 Timezone
 ```
 sudo localectl set-locale LC_TIME=C.UTF-8
