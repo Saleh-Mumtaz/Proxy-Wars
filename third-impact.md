@@ -1,10 +1,11 @@
-first start
+# first start
 check dns at the beginning
 ```
 resolvectl status
 sh -c 'apt-get update; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get autoremove -y; apt-get autoclean -y'
 apt-get install -y software-properties-common ufw wget curl git socat cron busybox bash-completion locales nano apt-utils
 ```
+---
 Disable IPv6
 ```
 sudo vi /etc/default/grub
@@ -27,6 +28,7 @@ ip addr show ens160 | grep inet6
 test -f /proc/net/if_inet6 && echo "IPv6 enabled" || echo "IPv6 disabled"
 
 ```
+---
 Timezone
 ```
 sudo localectl set-locale LC_TIME=C.UTF-8
@@ -70,6 +72,7 @@ echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 
 sudo apt update
 sudo apt install nginx
 ```
+---
 bbr
 ```
 vi /etc/sysctl.conf
@@ -77,12 +80,13 @@ net.core.default_qdisc=fq
 net.ipv4.tcp_congestion_control=bbr
 sysctl -p
 ```
+---
 SSH
 ```
 vi /etc/ssh/sshd_config
 sudo systemctl daemon-reload && sudo systemctl restart ssh.socket
 ```
-
+---
 
 x-ui-pro
 ```
@@ -100,12 +104,12 @@ if you enabled ip limit, use the following command to clear the log time to time
 ```
 echo "" > /usr/local/x-ui/access.log
 ```
-
+---
 changing the html site
 ```
 wget https://github.com/pathumd/2021_personal_site/archive/refs/heads/main.zip && unzip main.zip && rm -r /var/www/html/* && cp -r /root/2021_personal_site-main/. /var/www/html/ && rm main.zip && rm -r 2021_personal_site-main
 ```
-
+---
 Nginx configuration
 ```
 vim /lib/systemd/system/nginx.service
@@ -135,6 +139,7 @@ sudo rm -f /etc/xray.socket
 sudo lsof | grep /etc/xray.socket
 sudo kill -9 <PID>
 ```
+---
 Hy2
 ```
 HYSTERIA_USER=root bash <(curl -fsSL https://get.hy2.sh/)
@@ -722,6 +727,7 @@ sudo apt-get update && \
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && \
 sudo docker run hello-world
 ```
+---
 telegram bot
 ```
 mkdir /etc/tgbot && cd /etc/tgbot && vim compose.yml
@@ -814,6 +820,7 @@ to delete everything related to all containers
 ```
 docker kill $(docker ps -q) && docker rm $(docker ps -a -q) && docker volume rm $(docker volume ls -q) && docker rmi $(docker images -q)
 ```
+---
 warp interface
 normal warp
 ```
