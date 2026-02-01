@@ -18,6 +18,14 @@ GRUB_CMDLINE_LINUX_DEFAULT="ipv6.disable=1"
 sudo update-grub
 
 sudo reboot
+
+# Check IPv6 addresses
+ip addr show ens160 | grep inet6
+# Should show nothing if disabled
+
+# Or check sysfs
+test -f /proc/net/if_inet6 && echo "IPv6 enabled" || echo "IPv6 disabled"
+
 ```
 Timezone
 ```
