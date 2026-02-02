@@ -115,6 +115,20 @@ then run the script you want
 ```
 proxychains4 bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
 ```
+for reverse ssh tunnel
+```
+ssh-keygen -t ed25519 -f ~/.ssh/iran_key -C "foreign_to_iran"
+ssh-copy-id -i ~/.ssh/iran_key.pub root@x.x.x.x
+```
+test run check
+```
+ssh -i ~/.ssh/iran_key root@x.x.x.x "whoami"
+ssh -i ~/.ssh/iran_key -R 1080 -N -f root@x.x.x.x
+```
+on iran
+```
+ss -tulpn | grep :1080
+```
 ---
 x-ui-pro
 ```
