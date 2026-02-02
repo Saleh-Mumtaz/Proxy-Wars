@@ -101,7 +101,7 @@ ssh-copy-id -p $sshport root@x.x.x.x
 Test run check
 ```
 ssh -p $sshport root@x.x.x.x "whoami"
-ssh -p $sshport -D 1080 -N -f root@94.159.109.54
+ssh -p $sshport -D 1080 -N -f root@x.x.x.x
 ss -tulpn | grep :1080
 ```
 proxify terminal
