@@ -93,8 +93,29 @@ SSH
 vi /etc/ssh/sshd_config
 sudo systemctl daemon-reload && sudo systemctl restart ssh.socket
 ```
+ssh tunnel to proxify terminal of the restricted vps
+```
+ssh-keygen -t ed25519 -C "sso"
+ssh-copy-id -p $sshport root@x.x.x.x
+```
+Test run check
+```
+ssh -p $sshport root@x.x.x.x "whoami"
+ssh -p $sshport -D 1080 -N -f root@94.159.109.54
+ss -tulpn | grep :1080
+```
+proxify terminal
+```
+apt install -y proxychains4
+cp /etc/proxychains4.conf /etc/proxychains4.conf.backup
+vi /etc/proxychains4.conf
+```
+change `socks4 127.0.0.1 9050` to `socks5 127.0.0.1 1080` <br/>
+then run the script you want
+```
+proxychains4 bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
+```
 ---
-
 x-ui-pro
 ```
 sudo su -c "$(command -v apt||echo dnf) -y install wget;bash <(wget -qO- raw.githubusercontent.com/GFW4Fun/x-ui-pro/master/x-ui-pro.sh) -panel 1 -xuiver last -cdn off -secure no -country xx"
