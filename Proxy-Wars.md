@@ -189,6 +189,40 @@ de nl
     }
 ```
 
+
+warp interface
+normal warp
+```
+# first run
+wget -N https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh && bash menu.sh
+# menu
+warp
+```
+on ubuntu 24 warp can not get ip so we use warp-go and choose ```WARP Non-global dualstack ipv4 priority``` option
+```
+# first run
+wget -N https://gitlab.com/fscarmen/warp/-/raw/main/warp-go.sh && bash warp-go.sh
+# menu
+warp-go
+```
+in panel go to advanced add this in outbounds section
+```
+    {
+      "tag": "warp",
+      "protocol": "freedom",
+      "settings": {
+        "domainStrategy": "UseIPv4"
+      },
+      "streamSettings": {
+        "sockopt": {
+          "interface": "WARP",
+          "tcpFastOpen": true
+        }
+      }
+    }
+```
+and add routing rule network tcp,udp outbound warp or source port 0-65535 outbound warp
+
 ---
 
 **Step 6 Clear History**
