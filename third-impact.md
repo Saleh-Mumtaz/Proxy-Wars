@@ -6,6 +6,7 @@ ls /etc/netplan/
 vi /etc/netplan/xx-config.yaml
 netplan apply
 ```
+---
 update and upgrade and install
 ```
 sh -c 'apt-get update; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get autoremove -y; apt-get autoclean -y'
