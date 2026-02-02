@@ -2,6 +2,12 @@
 check dns at the beginning
 ```
 resolvectl status
+ls /etc/netplan/
+vi /etc/netplan/xx-config.yaml
+netplan apply
+```
+update and upgrade and install
+```
 sh -c 'apt-get update; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get autoremove -y; apt-get autoclean -y'
 apt-get install -y software-properties-common ufw wget curl git socat cron busybox bash-completion locales nano apt-utils
 ```
