@@ -188,8 +188,10 @@ de nl
       }
     }
 ```
-
-
+list interfaces
+```
+ip link show
+```
 warp interface
 normal warp
 ```
