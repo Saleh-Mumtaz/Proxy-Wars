@@ -192,6 +192,10 @@ list interfaces
 ```
 ip link show
 ```
+or
+```
+ifconfig -a
+```
 warp interface
 normal warp
 ```
